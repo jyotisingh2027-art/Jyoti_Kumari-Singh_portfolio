@@ -12,7 +12,7 @@ export function Hero() {
     <section
       id="home"
       className="relative min-h-screen overflow-hidden bg-[var(--hero)]"
-      style={{ "--hero": "oklch(0.56 0.12 300)" } as React.CSSProperties}
+      style={{ "--hero": "oklch(0.51 0.16 300)" } as React.CSSProperties}
     >
       {/* Full portrait, uncropped; sits closer to the text on wide screens */}
       <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1537] h-full max-w-full lg:right-[4%] xl:right-[10%] 2xl:right-[16%]">

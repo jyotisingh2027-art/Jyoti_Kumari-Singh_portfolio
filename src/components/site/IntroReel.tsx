@@ -37,7 +37,7 @@ export function IntroReel() {
     <section id="reel" className="relative h-screen w-full overflow-hidden bg-background">
       <video
         ref={videoRef}
-        className="size-full object-contain"
+        className="size-full object-cover"
         src={heroVideoSrc}
         playsInline
         preload="auto"

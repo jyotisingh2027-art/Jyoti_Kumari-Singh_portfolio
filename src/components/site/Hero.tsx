@@ -8,19 +8,22 @@ import { profile, marqueeWords } from "@/content/portfolio";
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      <div className="absolute inset-y-0 right-0 w-full overflow-hidden lg:w-[64%]">
+    <section id="home" className="relative min-h-screen overflow-hidden bg-background">
+      {/* Full portrait, uncropped, anchored to the right edge */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1537] h-full max-w-full">
         <img
           src={heroPortrait}
           alt={`Portrait of ${profile.brand}`}
-          width={1024}
-          height={1536}
-          className="size-full object-cover object-[center_25%]"
+          width={1023}
+          height={1537}
+          className="size-full object-contain object-bottom"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 via-40% via-background/50 via-70% to-background/30" />
-        <div className="absolute inset-0 bg-primary/35 mix-blend-color" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+        {/* One light, even purple wash over the whole photo */}
+        <div className="absolute inset-0 bg-background/60 lg:bg-background/20" />
+        {/* Soft edges so the photo melts into the same purple as the rest of the section */}
+        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">

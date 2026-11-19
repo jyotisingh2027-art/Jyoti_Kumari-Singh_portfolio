@@ -1,3 +1,4 @@
+import type React from "react";
 import { ArrowDownRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -8,22 +9,27 @@ import { profile, marqueeWords } from "@/content/portfolio";
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-background">
-      {/* Full portrait, uncropped, anchored to the right edge */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1537] h-full max-w-full">
+    <section
+      id="home"
+      className="relative min-h-screen overflow-hidden bg-[var(--hero)]"
+      style={{ "--hero": "oklch(0.56 0.12 300)" } as React.CSSProperties}
+    >
+      {/* Full portrait, uncropped; sits closer to the text on wide screens */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1537] h-full max-w-full lg:right-[4%] xl:right-[10%] 2xl:right-[16%]">
         <img
           src={heroPortrait}
           alt={`Portrait of ${profile.brand}`}
           width={1023}
           height={1537}
-          className="size-full object-contain object-bottom"
+          className="size-full object-contain object-bottom opacity-60"
         />
-        {/* One light, even purple wash over the whole photo */}
-        <div className="absolute inset-0 bg-background/60 lg:bg-background/20" />
-        {/* Soft edges so the photo melts into the same purple as the rest of the section */}
-        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-background to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        {/* Soft, even purple wash so the photo reads as a faded background */}
+        <div className="absolute inset-0 bg-[var(--hero)]/50 lg:bg-[var(--hero)]/35" />
+        {/* Fade every edge into the section colour so there is no visible box */}
+        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-[var(--hero)] to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[var(--hero)] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--hero)] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--hero)] to-transparent" />
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">

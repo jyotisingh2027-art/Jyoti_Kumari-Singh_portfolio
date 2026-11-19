@@ -2,7 +2,7 @@
 
 Personal portfolio: technology, business and problem solving.
 
-**Live site:** https://jyotisingh2027-art.github.io/Jyoti_Kumari-Singh_portfolio/
+**Live site:** https://jyotikumarisingh.me
 
 Built with React, TypeScript, Vite and Tailwind CSS. Deployed to GitHub Pages on every push to `main`.
 

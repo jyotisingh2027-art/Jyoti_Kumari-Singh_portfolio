@@ -1,0 +1,64 @@
+import { ArrowDownRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import heroPortraitAsset from "@/assets/jyoti-hero.png";
+
+const heroPortrait = heroPortraitAsset;
+import { profile, marqueeWords } from "@/content/portfolio";
+
+export function Hero() {
+  return (
+    <section id="home" className="relative min-h-screen overflow-hidden">
+      <div className="absolute inset-y-0 right-0 w-full overflow-hidden lg:w-[64%]">
+        <img
+          src={heroPortrait}
+          alt={`Portrait of ${profile.brand}`}
+          width={1024}
+          height={1536}
+          className="size-full object-cover object-[center_25%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 via-40% via-background/50 via-70% to-background/30" />
+        <div className="absolute inset-0 bg-primary/35 mix-blend-color" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">
+        <p className="eyebrow animate-rise opacity-80">{profile.availability}</p>
+        <h1 className="mt-6 max-w-4xl animate-rise">
+          <span className="display block text-4xl sm:text-5xl lg:text-6xl">
+            {profile.greeting}
+          </span>
+          <span className="display text-outline mt-2 block text-4xl sm:text-5xl lg:text-6xl">
+            {profile.role}
+          </span>
+        </h1>
+        <p className="mt-8 max-w-xl animate-rise text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {profile.tagline}
+        </p>
+
+        <div className="mt-10 flex animate-rise flex-wrap items-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-8">
+            <a href="#projects">View My Journey</a>
+          </Button>
+          <Button asChild size="lg" variant="destructive" className="rounded-full px-8">
+            <a href="#contact">
+              Let's Connect <ArrowDownRight className="size-4" />
+            </a>
+          </Button>
+        </div>
+      </div>
+
+
+      <div className="surface-ink absolute inset-x-0 bottom-0 flex overflow-hidden py-4">
+        <div className="animate-marquee flex shrink-0 gap-10 pr-10">
+          {[...marqueeWords, ...marqueeWords].map((word, i) => (
+            <span key={`${word}-${i}`} className="display text-xl whitespace-nowrap opacity-90">
+              {word} <span className="opacity-40">/</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

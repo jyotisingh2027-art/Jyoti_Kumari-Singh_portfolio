@@ -37,7 +37,19 @@ export function Contact() {
             <dl className="mt-8 space-y-4 text-sm">
               <div>
                 <dt className="eyebrow opacity-60">Email</dt>
-                <dd className="mt-1 font-semibold">{profile.email}</dd>
+                <dd className="mt-1 font-semibold">
+                  <a href={`mailto:${profile.email}`} className="hover:underline underline-offset-4">
+                    {profile.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow opacity-60">Phone</dt>
+                <dd className="mt-1 font-semibold">
+                  <a href={`tel:${profile.phone.replace(/-/g, "")}`} className="hover:underline underline-offset-4">
+                    {profile.phone}
+                  </a>
+                </dd>
               </div>
               <div>
                 <dt className="eyebrow opacity-60">Location</dt>

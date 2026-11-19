@@ -8,10 +8,10 @@ export const profile = {
   role: "meaningful solutions",
   greeting: "I turn technology, ideas and business problems into",
   tagline:
-    "I work at the intersection of technology and business to solve complex problems and bridge the bridge to possability.",
+    "I work at the intersection of technology and business to solve complex problems and build the bridge to possibility.",
   location: "Gurugram, India",
   email: "jyoti.singh2027@gmail.com",
-  phone: "+00 00000 00000",
+  phone: "+91-7010448420",
   availability: "Technology × Business × Problem Solving",
 };
 
@@ -209,7 +209,7 @@ export const projectGroups = [
 ];
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com/jksjyoti" },
+  { label: "GitHub", href: "https://github.com/jyotisingh2027-art" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/jyoti-kumari-singh/" },
 ];
 

@@ -164,6 +164,11 @@ import sihProduct from "@/assets/sih/product.jpg";
 import sihJury from "@/assets/sih/jury.jpg";
 import sihNews from "@/assets/sih/news.jpg";
 import sihAward from "@/assets/sih/award.jpg";
+import chaosLanding from "@/assets/chaos/landing.jpg";
+import chaosOnboarding from "@/assets/chaos/onboarding.jpg";
+import chaosScenario from "@/assets/chaos/scenario.jpg";
+import chaosAnalysis from "@/assets/chaos/analysis.jpg";
+import chaosPersona from "@/assets/chaos/persona.jpg";
 
 export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTop?: boolean };
 
@@ -210,10 +215,18 @@ export const projectGroups = [
         category: "AI Game",
         year: "2026",
         blurb:
-          "A game built using AI — Corporate Chaos. Play it live and see AI-assisted game building in action.",
-        tags: ["AI", "Game", "Lovable"],
+          "A satirical survival game for office life, built end to end with AI. Players register a corporate badge, survive ten workplace scenarios per level — from 52-minute ‘quick standups’ to inbox overload — while a live stress meter reacts to every choice. An AI analysis then scores their caffeine tolerance, meeting fatigue and email avoidance, and assigns an office persona such as ‘Task Juggler’. Three unlockable levels, sound effects and a PANIC button included.",
+        highlightTags: ["AI Product Development", "Gamification", "Product Design"],
+        tags: ["AI-Generated Visuals", "Prompt Design", "Persona Engine", "UX Writing", "Rapid Prototyping"],
         link: "https://corporate-chaos.lovable.app",
         linkLabel: "Play the Game",
+        screens: [
+          { src: chaosLanding, alt: "Corporate Chaos landing page with an Employee of the Month card", caption: "Landing — enter the jungle" },
+          { src: chaosOnboarding, alt: "Employee onboarding screen to create a corporate badge ID", caption: "Onboarding — build your badge" },
+          { src: chaosScenario, alt: "A workplace scenario question with four answer choices and a stress meter", caption: "10 scenarios per level" },
+          { src: chaosAnalysis, alt: "Chaos Corp AI analysis showing survival rate and trait meters", caption: "AI analysis of your habits" },
+          { src: chaosPersona, alt: "Office persona result: Task Juggler, with field readings", caption: "Your office persona" },
+        ] as ProjectPhoto[],
       },
     ],
   },

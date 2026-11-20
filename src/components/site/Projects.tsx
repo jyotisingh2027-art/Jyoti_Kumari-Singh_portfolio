@@ -35,6 +35,14 @@ export function Projects() {
                     <div>
                       <p className="text-sm leading-relaxed opacity-70">{project.blurb}</p>
                       <ul className="mt-4 flex flex-wrap gap-2">
+                        {("highlightTags" in project ? (project.highlightTags as string[]) : []).map((tag) => (
+                          <li
+                            key={tag}
+                            className="rounded-full bg-gold px-3 py-1 text-xs font-bold text-gold-foreground"
+                          >
+                            {tag}
+                          </li>
+                        ))}
                         {project.tags.map((tag) => (
                           <li
                             key={tag}
@@ -157,6 +165,42 @@ export function Projects() {
                         ))}
                       </ul>
                     </article>
+                  );
+                }
+
+                const screens =
+                  "screens" in project && project.screens ? (project.screens as ProjectPhoto[]) : null;
+
+                if (screens && "link" in project && project.link) {
+                  return (
+                    <div key={project.index} className="border-b border-sidebar-border">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={className.replace("border-b border-sidebar-border ", "")}
+                        aria-label={`${project.title} — ${project.linkLabel}`}
+                      >
+                        {inner}
+                      </a>
+                      <ul className="grid grid-cols-2 gap-3 pb-10 sm:grid-cols-3 lg:grid-cols-5 md:px-4">
+                        {screens.map((shot) => (
+                          <li key={shot.src}>
+                            <a href={shot.src} target="_blank" rel="noopener noreferrer" className="group/photo block">
+                              <div className="aspect-[16/10] overflow-hidden rounded-xl border border-sidebar-border">
+                                <img
+                                  src={shot.src}
+                                  alt={shot.alt}
+                                  loading="lazy"
+                                  className="size-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                                />
+                              </div>
+                              <p className="mt-2 text-xs leading-snug opacity-70">{shot.caption}</p>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   );
                 }
 

@@ -14,22 +14,25 @@ export function Hero() {
       className="relative min-h-screen overflow-hidden bg-[var(--hero)]"
       style={{ "--hero": "oklch(0.51 0.16 300)" } as React.CSSProperties}
     >
-      {/* Full portrait, uncropped; sits closer to the text on wide screens */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[780/950] h-full max-w-full lg:max-w-[40vw]">
+      {/* Portrait with its green backdrop, faded into the section colour on every side by a soft mask (no hard edges) */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1230] h-full max-w-full lg:max-w-[52vw]"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse 62% 58% at 60% 48%, #000 55%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 62% 58% at 60% 48%, #000 55%, transparent 100%)",
+        }}
+      >
         <img
           src={heroPortrait}
           alt={`Portrait of ${profile.brand}`}
-          width={780}
-          height={950}
-          className="size-full object-contain object-right-bottom opacity-60"
+          width={1023}
+          height={1230}
+          className="size-full object-cover object-center"
         />
-        {/* Soft, even purple wash so the photo reads as a faded background */}
-        <div className="absolute inset-0 bg-[var(--hero)]/50 lg:bg-[var(--hero)]/35" />
-        {/* Fade every edge into the section colour so there is no visible box */}
-        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-[var(--hero)] to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[var(--hero)] to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--hero)] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--hero)] to-transparent" />
+        {/* Light purple tint so the photo sits in the page's colour scheme without hiding the greenery */}
+        <div className="absolute inset-0 bg-[var(--hero)]/45 lg:bg-[var(--hero)]/25" />
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">

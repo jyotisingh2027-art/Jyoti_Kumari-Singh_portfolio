@@ -36,7 +36,14 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">
-        <p className="eyebrow animate-rise opacity-80">{profile.availability}</p>
+        <p className="eyebrow animate-rise opacity-80">
+          {profile.availability.split("×").map((part, i) => (
+            <span key={i}>
+              {i > 0 && <span className="mx-1 align-middle text-xl leading-none font-bold sm:text-2xl">×</span>}
+              {part}
+            </span>
+          ))}
+        </p>
         <h1 className="mt-6 max-w-4xl animate-rise">
           <span className="display block text-4xl sm:text-5xl lg:text-6xl">
             {profile.greeting}

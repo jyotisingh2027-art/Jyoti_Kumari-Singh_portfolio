@@ -16,19 +16,19 @@ export function Hero() {
     >
       {/* Portrait with its green backdrop, faded into the section colour on every side by a soft mask (no hard edges) */}
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1230] h-full max-w-full lg:max-w-[52vw]"
+        className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1060] h-full max-w-full lg:max-w-[52vw]"
         style={{
           maskImage:
-            "radial-gradient(ellipse 62% 58% at 60% 48%, #000 55%, transparent 100%)",
+            "radial-gradient(ellipse 64% 70% at 58% 42%, #000 58%, transparent 100%)",
           WebkitMaskImage:
-            "radial-gradient(ellipse 62% 58% at 60% 48%, #000 55%, transparent 100%)",
+            "radial-gradient(ellipse 64% 70% at 58% 42%, #000 58%, transparent 100%)",
         }}
       >
         <img
           src={heroPortrait}
           alt={`Portrait of ${profile.brand}`}
           width={1023}
-          height={1230}
+          height={1060}
           className="size-full object-cover object-center"
         />
         {/* Light purple tint so the photo sits in the page's colour scheme without hiding the greenery */}

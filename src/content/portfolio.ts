@@ -1,3 +1,4 @@
+import muLogo from "@/assets/mu-logo.png";
 import kcgLogo from "@/assets/kcg-logo.png";
 import graduationPhoto from "@/assets/graduation.jpg";
 /**
@@ -61,6 +62,9 @@ export const education = [
     stage: "PGP – Technology & Business Management",
     school: "Masters' Union",
     score: "Post Graduate Programme",
+    logo: muLogo,
+    logoAlt: "Masters' Union University logo",
+    logoWide: true,
     location: "Gurugram, India",
     year: "2026 – Present",
   },

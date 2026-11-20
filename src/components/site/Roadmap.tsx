@@ -165,7 +165,12 @@ function RoadmapCard({
             <img
               src={stop.logo}
               alt={"logoAlt" in stop ? stop.logoAlt : ""}
-              className="size-10 shrink-0 rounded-full bg-white object-contain p-0.5 shadow-sm ring-1 ring-ink/10"
+              className={cn(
+                "shrink-0 object-contain shadow-sm",
+                "logoWide" in stop && stop.logoWide
+                  ? "h-10 w-auto rounded-lg bg-black"
+                  : "size-10 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
+              )}
             />
           )}
           <span>{stop.school}</span>

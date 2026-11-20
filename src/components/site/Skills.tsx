@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 import { skills } from "@/content/portfolio";
 import workspaceBg from "@/assets/skills-workspace.jpg";
 
@@ -17,20 +19,7 @@ const ICONS: Record<string, string[]> = {
   "AI Skills": iconsFor("ai"),
 };
 
-/** Hand-placed spots in each card's empty space, as [top %, left %, tilt °]. Used on large screens. */
-const SPOTS: Record<string, [number, number, number][]> = {
-  "Business Skills": [
-    [46, 10, -8], [44, 52, 6], [57, 30, -4], [60, 72, 8], [72, 8, 5], [76, 46, -6], [88, 74, 4],
-  ],
-  "Technical Skills": [
-    [11, 64, -6], [32, 86, 6], [42, 80, -5], [53, 60, 4], [53, 84, -6], [59, 88, 5],
-    [68, 58, -4], [68, 80, 7], [77, 42, -6], [77, 70, 5], [82, 82, -4],
-  ],
-  "AI Skills": [
-    [50, 82, 6], [58, 70, -5], [64, 86, 4], [73, 10, -6], [74, 38, 5], [72, 66, -4],
-    [83, 22, 6], [84, 52, -5], [84, 80, 5], [93, 8, -4], [93, 40, 6],
-  ],
-};
+
 
 export function Skills() {
   return (
@@ -99,36 +88,88 @@ export function Skills() {
               )}
 
               {ICONS[skill.title] && ICONS[skill.title].length > 1 && (
-                <>
-                  {/* Large screens: icons tucked into the gaps around the skills */}
-                  {ICONS[skill.title].slice(1).map((src, i) => {
-                    const spot = SPOTS[skill.title]?.[i];
-                    if (!spot) return null;
-                    const [top, left, tilt] = spot;
-                    return (
-                      <img
-                        key={src}
-                        src={src}
-                        alt=""
-                        aria-hidden="true"
-                        data-skill-icon
-                        style={{ top: `${top}%`, left: `${left}%`, transform: `rotate(${tilt}deg)` }}
-                        className="absolute hidden size-10 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-125 lg:block"
-                      />
-                    );
-                  })}
-                  {/* Smaller screens: a simple row so nothing overlaps the text */}
-                  <div aria-hidden="true" className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                    {ICONS[skill.title].slice(1).map((src) => (
-                      <img key={src} src={src} alt="" className="size-9 object-contain" />
-                    ))}
-                  </div>
-                </>
+                <ScatterIcons icons={ICONS[skill.title].slice(1)} />
               )}
             </article>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+const ICON = 40; // icon size in px
+const GAP = 10; // clear space kept around text and other icons
+
+/**
+ * Places icons into the empty spaces of the parent card, never on top of text.
+ * Positions are measured from the real layout and recalculated on resize, picking
+ * spots spread as far apart as possible. Icons that do not fit are left out.
+ */
+function ScatterIcons({ icons }: { icons: string[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [spots, setSpots] = useState<{ x: number; y: number; r: number }[]>([]);
+
+  useEffect(() => {
+    const layer = ref.current;
+    const card = layer?.parentElement;
+    if (!layer || !card) return;
+
+    const place = () => {
+      const box = card.getBoundingClientRect();
+      const pad = 20;
+      const blocked = [...card.querySelectorAll("h3, h4, p, li, img:not([data-scatter])")].map((el) => {
+        const r = el.getBoundingClientRect();
+        return { l: r.left - box.left - GAP, t: r.top - box.top - GAP, r: r.right - box.left + GAP, b: r.bottom - box.top + GAP };
+      });
+      const free: { x: number; y: number }[] = [];
+      for (let y = pad; y <= box.height - pad - ICON; y += 8) {
+        for (let x = pad; x <= box.width - pad - ICON; x += 8) {
+          const hit = blocked.some((k) => x < k.r && x + ICON > k.l && y < k.b && y + ICON > k.t);
+          if (!hit) free.push({ x, y });
+        }
+      }
+      const chosen: { x: number; y: number; r: number }[] = [];
+      const minDist = ICON + 18;
+      for (let i = 0; i < icons.length && free.length; i++) {
+        let best: { x: number; y: number } | null = null;
+        let bestScore = -1;
+        for (const c of free) {
+          const d = chosen.length
+            ? Math.min(...chosen.map((p) => Math.hypot(p.x - c.x, p.y - c.y)))
+            : Math.hypot(c.x - box.width / 2, c.y) ; // start near the top-middle gap
+          if (chosen.length && d < minDist) continue;
+          const score = chosen.length ? d : -d;
+          if (best === null || score > bestScore) {
+            best = c;
+            bestScore = score;
+          }
+        }
+        if (!best) break;
+        chosen.push({ ...best, r: ((i * 37) % 17) - 8 });
+      }
+      setSpots(chosen);
+    };
+
+    place();
+    const ro = new ResizeObserver(place);
+    ro.observe(card);
+    document.fonts?.ready.then(place).catch(() => {});
+    return () => ro.disconnect();
+  }, [icons]);
+
+  return (
+    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {spots.map((p, i) => (
+        <img
+          key={icons[i]}
+          src={icons[i]}
+          alt=""
+          data-scatter
+          style={{ left: p.x, top: p.y, width: ICON, height: ICON, transform: `rotate(${p.r}deg)` }}
+          className="absolute object-contain drop-shadow-sm"
+        />
+      ))}
+    </div>
   );
 }

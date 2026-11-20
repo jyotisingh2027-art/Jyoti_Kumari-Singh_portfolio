@@ -1,13 +1,23 @@
 import { certifications } from "@/content/portfolio";
+import certifiedStamp from "@/assets/certified-stamp.png";
 
 export function Certifications() {
   return (
     <section id="certifications" className="surface-paper py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <p className="eyebrow opacity-60">Credentials</p>
-        <h2 className="display mt-3 text-4xl sm:text-6xl">
-          Certifi<span className="text-outline-ink">cations</span>
-        </h2>
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow opacity-60">Credentials</p>
+            <h2 className="display mt-3 text-4xl sm:text-6xl">
+              Certifi<span className="text-outline-ink">cations</span>
+            </h2>
+          </div>
+          <img
+            src={certifiedStamp}
+            alt="Certified stamp"
+            className="size-20 shrink-0 -rotate-12 object-contain sm:size-28 lg:size-32"
+          />
+        </div>
 
         <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {certifications.map((cert) => (

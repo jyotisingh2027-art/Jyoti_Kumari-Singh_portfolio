@@ -79,7 +79,13 @@ export function Projects() {
                   return (
                     <article key={project.index} className="border-b border-sidebar-border py-10 md:px-4">
                       {/* Top: award details (left) + award photo (right) */}
-                      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+                      <div
+                        className={`grid items-center gap-8 lg:gap-12 ${
+                          "award" in project && project.award
+                            ? "lg:grid-cols-2"
+                            : "lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
+                        }`}
+                      >
                         <div>
                           {"award" in project && project.award ? (
                             <>
@@ -152,7 +158,7 @@ export function Projects() {
 
                       {/* Middle: product and project details */}
                       {points.length === 0 && (
-                        <p className="mt-12 max-w-4xl text-base leading-relaxed opacity-80">{project.blurb}</p>
+                        <p className="mt-12 text-base leading-relaxed opacity-80 sm:text-lg">{project.blurb}</p>
                       )}
                       <div className={points.length ? "mt-12 grid gap-8 md:grid-cols-3" : "hidden"}>
                         {points.map((block) => (

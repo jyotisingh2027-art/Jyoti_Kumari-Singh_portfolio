@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { profile, resumeUrl, socials } from "@/content/portfolio";
+import connectPlugs from "@/assets/connect-plugs.png";
 
 export function Contact() {
   const [sending, setSending] = useState(false);
@@ -28,7 +29,15 @@ export function Contact() {
       </h2>
 
       <div className="relative mx-auto mt-4 max-w-6xl px-6">
-        <div className="grid gap-10 rounded-3xl bg-card p-8 shadow-lift sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <img
+          src={connectPlugs}
+          alt="Two people plugging their cables together"
+          width={840}
+          height={371}
+          loading="lazy"
+          className="pointer-events-none relative z-0 mx-auto -mb-[3px] block h-auto w-full max-w-3xl select-none"
+        />
+        <div className="relative z-10 grid gap-10 rounded-3xl bg-card p-8 shadow-lift sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div>
             <p className="eyebrow opacity-70">Reach me</p>
             <h3 className="display mt-4 text-4xl">Contact</h3>

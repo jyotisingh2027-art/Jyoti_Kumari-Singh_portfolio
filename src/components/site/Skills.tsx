@@ -58,7 +58,7 @@ export function Skills() {
                 <div className="mt-6 space-y-6">
                   {skill.groups.map((group) => (
                     <div key={group.heading}>
-                      <h4 className="text-xs font-bold uppercase tracking-widest opacity-50">
+                      <h4 className="text-xs font-bold lowercase tracking-widest opacity-50">
                         {group.heading}
                       </h4>
                       <ul className="mt-3 flex flex-wrap gap-2">

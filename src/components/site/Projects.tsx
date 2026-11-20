@@ -59,7 +59,7 @@ export function Projects() {
                       </ul>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="text-xs tracking-widest uppercase opacity-60">
+                      <span className="text-xs tracking-widest lowercase opacity-60">
                         {project.category} · {project.year}
                       </span>
                       <span className="grid size-12 shrink-0 place-items-center rounded-full border border-sidebar-border transition-transform group-hover:-rotate-12">
@@ -120,7 +120,7 @@ export function Projects() {
                           {"award" in project && project.award ? (
                             <>
                           <div className="rounded-3xl bg-gold p-6 text-gold-foreground shadow-lift sm:p-8">
-                            <p className="flex items-start gap-3 text-sm font-bold tracking-wide uppercase sm:text-base">
+                            <p className="flex items-start gap-3 text-sm font-bold tracking-wide lowercase sm:text-base">
                               <Trophy className="mt-0.5 size-5 shrink-0" />
                               <span>
                                 {project.award} · {String("awardDate" in project ? project.awardDate : project.year)}

@@ -55,7 +55,7 @@ export function About() {
             {stats.map((stat) => (
               <div key={stat.label} className="bg-card px-5 py-6">
                 <dt className="display text-4xl">{stat.value}</dt>
-                <dd className="mt-2 text-xs tracking-wide text-muted-foreground uppercase">
+                <dd className="mt-2 text-xs tracking-wide text-muted-foreground lowercase">
                   {stat.label}
                 </dd>
               </div>

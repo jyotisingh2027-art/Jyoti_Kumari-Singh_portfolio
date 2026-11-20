@@ -151,7 +151,7 @@ function RoadmapCard({
             style={{
               backgroundImage: `url(${stop.cardBg})`,
               ...("cardBgSoft" in stop && stop.cardBgSoft
-                ? { filter: "saturate(0.65) contrast(0.8) brightness(1.08)", opacity: 0.75 }
+                ? { filter: "saturate(0.6) contrast(0.75) brightness(1.15)" }
                 : {}),
             }}
           />

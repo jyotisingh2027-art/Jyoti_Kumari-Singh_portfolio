@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 import connectLeft from "@/assets/connect-left.png";
 import connectRight from "@/assets/connect-right.png";
@@ -50,7 +50,7 @@ function boltPath(jitter: number) {
   return `${d} L${BOLT_TO.x},${BOLT_TO.y}`;
 }
 
-export function ConnectSpark() {
+export function ConnectSpark({ children }: { children?: ReactNode }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const purpleRef = useRef<SVGPathElement>(null);
   const orangeRef = useRef<SVGPathElement>(null);
@@ -144,10 +144,11 @@ export function ConnectSpark() {
     <div
       ref={wrapRef}
       className="pointer-events-none relative z-0 mx-auto -mb-[3px] w-full max-w-4xl select-none"
-      style={{ aspectRatio: `${W} / ${H}` }}
-      role="img"
-      aria-label="Two people connecting their cables, with electricity passing between the plugs"
+      style={{ aspectRatio: `${W} / ${H}`, containerType: "inline-size" }}
     >
+      <span className="sr-only">
+        Two people connecting their cables, with electricity passing between the plugs
+      </span>
       <img
         src={connectLeft}
         alt=""
@@ -241,6 +242,15 @@ export function ConnectSpark() {
           ))}
         </g>
       </svg>
+
+      {children && (
+        <div
+          className="absolute -translate-x-1/2"
+          style={{ left: "50%", bottom: `${(10 / H) * 100}%` }}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }

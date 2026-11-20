@@ -28,7 +28,7 @@ export function Projects() {
                   src={String(group.headingImage)}
                   alt={group.heading}
                   width={900}
-                  loading="lazy"
+                  height={group.heading === "Graduation" ? 492 : 546}
                   className="h-auto w-full max-w-[22rem] sm:max-w-md"
                 />
               </h3>

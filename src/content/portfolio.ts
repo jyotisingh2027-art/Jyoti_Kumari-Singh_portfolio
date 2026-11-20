@@ -160,8 +160,8 @@ export const certifications = [
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";
 import sihWinners from "@/assets/sih/winners.jpg";
-import sihPresentation from "@/assets/sih/presentation.jpg";
-import sihJudging from "@/assets/sih/judging.jpg";
+import sihProduct from "@/assets/sih/product.jpg";
+import sihJury from "@/assets/sih/jury.jpg";
 import sihNews from "@/assets/sih/news.jpg";
 import sihAward from "@/assets/sih/award.jpg";
 
@@ -269,14 +269,14 @@ export const projectGroups = [
             caption: "Team Hack Six — winners, SIH 2019 Hardware Edition",
           },
           {
-            src: sihPresentation,
-            alt: "Team presenting the water quality monitoring prototype to the judging panel",
-            caption: "Presenting the prototype to the jury",
+            src: sihProduct,
+            alt: "The final water quality monitoring prototype: primary filter, sensing tank and control unit, with live readings on ThingSpeak",
+            caption: "The final product — WAQM prototype",
           },
           {
-            src: sihJudging,
-            alt: "Judges reviewing the team's evaluation documents at CSIR-CSIO",
-            caption: "Final evaluation at CSIR-CSIO, Chandigarh",
+            src: sihJury,
+            alt: "Team presenting and demonstrating the prototype to the jury at the Grand Finale",
+            caption: "Final presentation to the jury",
           },
           {
             src: sihNews,

@@ -87,13 +87,6 @@ export function Projects() {
                   }[];
                   return (
                     <article key={project.index} className="relative py-10 md:px-4">
-                      {"sectionLogoBg" in project && project.sectionLogoBg && (
-                        <div
-                          aria-hidden="true"
-                          className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2 bg-contain bg-center bg-no-repeat opacity-[0.12]"
-                          style={{ backgroundImage: `url(${String(project.sectionLogoBg)})` }}
-                        />
-                      )}
                       {"sectionBg" in project && project.sectionBg && (
                         <div
                           aria-hidden="true"
@@ -101,7 +94,20 @@ export function Projects() {
                           style={{ backgroundColor: String(project.sectionBg) }}
                         />
                       )}
-                      <div className="relative">
+                      {"sectionLogoBg" in project && project.sectionLogoBg && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2 bg-contain bg-center bg-no-repeat opacity-40"
+                          style={{ backgroundImage: `url(${String(project.sectionLogoBg)})` }}
+                        />
+                      )}
+                      <div
+                        className={
+                          "sectionLight" in project && project.sectionLight
+                            ? "relative text-ink [&_.text-gold]:text-amber-700 [&_strong]:text-amber-700 [&_.bg-gold]:bg-gold [&_li]:border-ink/20"
+                            : "relative"
+                        }
+                      >
                       {/* Top: award details (left) + award photo (right) */}
                       <div
                         className={`grid items-center gap-8 lg:gap-12 ${

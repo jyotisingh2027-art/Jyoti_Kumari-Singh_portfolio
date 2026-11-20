@@ -62,6 +62,7 @@ export const education = [
     location: "Chennai",
     year: "2016",
     cardBg: kvGardenBg,
+    cardBgNatural: true,
     photo: school12thPhoto,
     photoAlt: "Jyoti with her 12th standard classmates and teacher at Kendriya Vidyalaya",
     photoWide: true,

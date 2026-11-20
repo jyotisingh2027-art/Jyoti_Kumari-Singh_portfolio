@@ -155,7 +155,11 @@ function RoadmapCard({
             aria-hidden="true"
             className={cn(
               "pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-r to-transparent",
-              right ? "from-card/90 via-card/50" : "from-paper/85 via-paper/45",
+              "cardBgNatural" in stop && stop.cardBgNatural
+                ? "from-black/55 via-black/20"
+                : right
+                  ? "from-card/90 via-card/50"
+                  : "from-paper/85 via-paper/45",
             )}
           />
         </>

@@ -1,9 +1,13 @@
-import { ArrowUpRight, MapPin, Trophy } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, MapPin, Trophy, X } from "lucide-react";
 
 import { projectGroups, type ProjectPhoto } from "@/content/portfolio";
 
 export function Projects() {
+  const [lightbox, setLightbox] = useState<ProjectPhoto | null>(null);
+
   return (
+    <>
     <section id="projects" className="surface-ink py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -139,12 +143,12 @@ export function Projects() {
                             </>
                           )}
                         </div>
-                        <a
-                          href={awardPhoto.src}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/photo block"
-                        >
+                        <button
+  type="button"
+  onClick={() => setLightbox(awardPhoto)}
+  aria-label={`Open photo: ${awardPhoto.caption}`}
+  className="group/photo block w-full cursor-zoom-in text-left"
+>
                           <div className="overflow-hidden rounded-2xl border border-sidebar-border">
                             <img
                               src={awardPhoto.src}
@@ -153,7 +157,7 @@ export function Projects() {
                             />
                           </div>
                           <p className="mt-2 text-xs leading-snug opacity-70">{awardPhoto.caption}</p>
-                        </a>
+                        </button>
                       </div>
 
                       {/* Middle: product and project details */}
@@ -200,12 +204,12 @@ export function Projects() {
                       <ul className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
                         {gallery.map((photo) => (
                           <li key={photo.src}>
-                            <a
-                              href={photo.src}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="group/photo block"
-                            >
+                            <button
+  type="button"
+  onClick={() => setLightbox(photo)}
+  aria-label={`Open photo: ${photo.caption}`}
+  className="group/photo block w-full cursor-zoom-in text-left"
+>
                               <div className="aspect-[4/3] overflow-hidden rounded-xl border border-sidebar-border">
                                 <img
                                   src={photo.src}
@@ -215,7 +219,7 @@ export function Projects() {
                                 />
                               </div>
                               <p className="mt-2 text-xs leading-snug opacity-70">{photo.caption}</p>
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
@@ -241,7 +245,12 @@ export function Projects() {
                       <ul className="grid grid-cols-2 gap-3 pb-10 sm:grid-cols-3 lg:grid-cols-5 md:px-4">
                         {screens.map((shot) => (
                           <li key={shot.src}>
-                            <a href={shot.src} target="_blank" rel="noopener noreferrer" className="group/photo block">
+                            <button
+  type="button"
+  onClick={() => setLightbox(shot)}
+  aria-label={`Open photo: ${shot.caption}`}
+  className="group/photo block w-full cursor-zoom-in text-left"
+>
                               <div className="aspect-[16/10] overflow-hidden rounded-xl border border-sidebar-border">
                                 <img
                                   src={shot.src}
@@ -251,7 +260,7 @@ export function Projects() {
                                 />
                               </div>
                               <p className="mt-2 text-xs leading-snug opacity-70">{shot.caption}</p>
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
@@ -281,5 +290,51 @@ export function Projects() {
         ))}
       </div>
     </section>
+      <Lightbox photo={lightbox} onClose={() => setLightbox(null)} />
+    </>
+  );
+}
+
+/** Full-screen photo viewer with a close (X) button; Esc or clicking the backdrop also closes it. */
+function Lightbox({ photo, onClose }: { photo: ProjectPhoto | null; onClose: () => void }) {
+  useEffect(() => {
+    if (!photo) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [photo, onClose]);
+
+  if (!photo) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={photo.caption}
+      onClick={onClose}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-10"
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close photo"
+        className="absolute top-4 right-4 grid size-12 place-items-center rounded-full bg-white text-black shadow-lift transition-transform hover:scale-105 sm:top-6 sm:right-6"
+      >
+        <X className="size-6" />
+      </button>
+      <figure className="flex max-h-full max-w-6xl flex-col items-center" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          className="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-lift"
+        />
+        <figcaption className="mt-4 text-center text-sm text-white/80">{photo.caption}</figcaption>
+      </figure>
+    </div>
   );
 }

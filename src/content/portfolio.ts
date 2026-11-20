@@ -342,6 +342,7 @@ export const projectGroups = [
         index: "00c",
         title: "Nook",
         titleLogo: nookLogo,
+        sectionBg: "#2d1129",
         category: "macOS App · In development",
         year: "2026",
         tagline:

@@ -86,7 +86,15 @@ export function Projects() {
                     items: string[];
                   }[];
                   return (
-                    <article key={project.index} className="py-10 md:px-4">
+                    <article key={project.index} className="relative py-10 md:px-4">
+                      {"sectionBg" in project && project.sectionBg && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2"
+                          style={{ backgroundColor: String(project.sectionBg) }}
+                        />
+                      )}
+                      <div className="relative">
                       {/* Top: award details (left) + award photo (right) */}
                       <div
                         className={`grid items-center gap-8 lg:gap-12 ${
@@ -274,6 +282,7 @@ export function Projects() {
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </article>
                   );
                 }

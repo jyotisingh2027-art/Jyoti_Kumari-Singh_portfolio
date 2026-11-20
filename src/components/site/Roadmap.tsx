@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, Award } from "lucide-react";
 
 import { education } from "@/content/portfolio";
 import classroomBg from "@/assets/classroom.jpg";
@@ -251,6 +251,12 @@ function RoadmapCard({
               />
             )}
             <span>{stop.school}</span>
+          </p>
+        )}
+        {"award" in stop && stop.award && (
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-gold-foreground shadow-lift">
+            <Award className="size-4 shrink-0" />
+            {String(stop.award)}
           </p>
         )}
         {stop.score && (

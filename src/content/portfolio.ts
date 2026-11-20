@@ -101,6 +101,7 @@ export const education = [
     cardBgSoft: true,
     photo: mastersUnionPhoto,
     photoAlt: "Jyoti in a black blazer at Masters' Union",
+    award: "MU Scholarship for Technology Leader",
     location: "Gurugram, India",
     year: "2026 – Present",
   },

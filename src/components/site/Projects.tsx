@@ -534,12 +534,12 @@ function CodeMarquee({ seed = 0 }: { seed?: number }) {
   return (
     <div
       aria-hidden="true"
-      className="relative left-1/2 my-6 flex w-screen -translate-x-1/2 overflow-hidden bg-background py-3 text-foreground"
+      className="relative left-1/2 my-6 flex w-screen -translate-x-1/2 overflow-hidden border-y border-white/10 bg-black py-1.5 text-white"
     >
-      <div className="animate-marquee flex shrink-0 gap-8 pr-8 [animation-direction:reverse]">
+      <div className="animate-marquee flex shrink-0 gap-6 pr-6 [animation-direction:reverse]">
         {[...tokens, ...tokens].map((t, i) => (
-          <span key={`${t}-${i}`} className="font-mono text-sm whitespace-nowrap opacity-90 sm:text-base">
-            {t} <span className="text-gold opacity-70">/</span>
+          <span key={`${t}-${i}`} className="font-mono text-[11px] whitespace-nowrap opacity-60">
+            {t} <span className="opacity-50">/</span>
           </span>
         ))}
       </div>

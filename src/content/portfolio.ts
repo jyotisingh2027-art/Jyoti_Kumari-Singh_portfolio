@@ -65,6 +65,7 @@ export const education = [
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
     logoWide: true,
+    photoPlaceholder: "Coming soon...",
     location: "Gurugram, India",
     year: "2026 – Present",
   },

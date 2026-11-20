@@ -157,7 +157,20 @@ function RoadmapCard({
         />
       )}
 
-      <div className={cn("photo" in stop && stop.photo && "pr-24 sm:pr-36")}>
+      {"photoPlaceholder" in stop && stop.photoPlaceholder && (
+        <div className="absolute top-8 right-6 grid aspect-[3/4] w-20 rotate-3 place-items-center rounded-xl border-4 border-white bg-white/10 p-2 text-center shadow-lift backdrop-blur-sm sm:top-9 sm:right-9 sm:w-28">
+          <span className="text-xs font-semibold italic opacity-90 sm:text-sm">
+            {stop.photoPlaceholder}
+          </span>
+        </div>
+      )}
+
+      <div
+        className={cn(
+          (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
+            "pr-24 sm:pr-36",
+        )}
+      >
         <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
         <h3 className="display mt-2 text-3xl sm:text-4xl">{stop.stage}</h3>
         <p className="mt-3 flex items-center gap-3 text-base font-bold">

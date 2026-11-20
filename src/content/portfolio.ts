@@ -59,9 +59,9 @@ export const education = [
   },
   {
     step: "04",
-    stage: "PGP – Technology & Business Management",
+    stage: "Post Graduate Programme – Technology & Business Management",
     school: "Masters' Union",
-    score: "Post Graduate Programme",
+    score: "",
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
     logoWide: true,

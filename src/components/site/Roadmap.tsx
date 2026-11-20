@@ -188,7 +188,9 @@ function RoadmapCard({
           )}
           <span>{stop.school}</span>
         </p>
-        <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
+        {stop.score && (
+          <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
+        )}
       </div>
 
       <div

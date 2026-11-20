@@ -8,12 +8,12 @@ export function Projects() {
 
   return (
     <>
-    <section id="projects" className="surface-ink overflow-x-clip pt-28 pb-10">
+    <section id="projects" className="surface-ink overflow-x-clip pt-16 pb-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow opacity-60">Selected work</p>
-            <h2 className="display mt-4 text-5xl sm:text-7xl">My Work</h2>
+            <h2 className="display mt-3 text-5xl sm:text-6xl">My Work</h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed opacity-70">
             Work from my post-graduation programme and my undergraduate academic years.
@@ -21,7 +21,7 @@ export function Projects() {
         </div>
 
         {projectGroups.map((group) => (
-          <div key={group.heading} className="mt-14">
+          <div key={group.heading} className={"headingImage" in group && group.headingImage ? "mt-6" : "mt-14"}>
             {"headingImage" in group && group.headingImage ? (
               <h3>
                 <img
@@ -29,7 +29,7 @@ export function Projects() {
                   alt={group.heading}
                   width={900}
                   height={group.heading === "Graduation" ? 492 : 546}
-                  className="h-auto w-full max-w-[22rem] sm:max-w-md"
+                  className="h-auto w-full max-w-[15rem] sm:max-w-[18rem]"
                 />
               </h3>
             ) : (

@@ -1,3 +1,4 @@
+import kcgCampusBg from "@/assets/kcg-campus.jpg";
 import kvGardenBg from "@/assets/kv-garden.jpg";
 import kvSchoolBg from "@/assets/kv-school.jpg";
 import mastersUnionPhoto from "@/assets/masters-union.jpg";
@@ -71,6 +72,7 @@ export const education = [
     score: "8.3 CGPA",
     location: "Chennai",
     year: "2016 – 2020",
+    cardBg: kcgCampusBg,
     logo: kcgLogo,
     logoAlt: "KCG College of Technology logo",
     photo: graduationPhoto,

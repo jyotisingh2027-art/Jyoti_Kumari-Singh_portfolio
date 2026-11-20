@@ -259,7 +259,7 @@ export const projectGroups = [
             label: "Reddit",
             href: "https://www.reddit.com/r/SideProject/comments/1xx0ag5/networking_finally_made_sense_to_my_friends_when/",
           },
-          { label: "X", href: "https://x.com/jo4109fy8/status/2121964763525816498" },
+          { label: "X (Twitter)", href: "https://x.com/jo4109fy8/status/2121964763525816498" },
           { label: "Product Hunt", href: "https://www.producthunt.com/products/netfixlab" },
         ],
         points: [

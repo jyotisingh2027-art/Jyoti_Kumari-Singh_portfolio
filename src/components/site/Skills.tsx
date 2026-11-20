@@ -98,8 +98,8 @@ export function Skills() {
   );
 }
 
-const ICON = 40; // icon size in px
-const GAP = 10; // clear space kept around text and other icons
+const ICON = 34; // icon size in px
+const GAP = 6; // clear space kept around text and other icons
 
 /**
  * Places icons into the empty spaces of the parent card, never on top of text.
@@ -122,15 +122,23 @@ function ScatterIcons({ icons }: { icons: string[] }) {
         const r = el.getBoundingClientRect();
         return { l: r.left - box.left - GAP, t: r.top - box.top - GAP, r: r.right - box.left + GAP, b: r.bottom - box.top + GAP };
       });
+      // Only use the gaps between and beside the text: from under the title down to the last skill row.
+      const rel = (el: Element) => el.getBoundingClientRect().top - box.top;
+      const relBottom = (el: Element) => el.getBoundingClientRect().bottom - box.top;
+      const title = card.querySelector("h3");
+      const textEls = [...card.querySelectorAll("p, h4, li")];
+      const yMin = title ? relBottom(title) + 4 : pad;
+      const yMax = textEls.length ? Math.max(...textEls.map(relBottom)) - ICON + 6 : box.height - pad - ICON;
+      void rel;
       const free: { x: number; y: number }[] = [];
-      for (let y = pad; y <= box.height - pad - ICON; y += 8) {
-        for (let x = pad; x <= box.width - pad - ICON; x += 8) {
+      for (let y = yMin; y <= yMax; y += 6) {
+        for (let x = pad; x <= box.width - pad - ICON; x += 6) {
           const hit = blocked.some((k) => x < k.r && x + ICON > k.l && y < k.b && y + ICON > k.t);
           if (!hit) free.push({ x, y });
         }
       }
       const chosen: { x: number; y: number; r: number }[] = [];
-      const minDist = ICON + 18;
+      const minDist = ICON + 26;
       for (let i = 0; i < icons.length && free.length; i++) {
         let best: { x: number; y: number } | null = null;
         let bestScore = -1;

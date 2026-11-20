@@ -549,8 +549,8 @@ function CodeMarquee({ seed = 0 }: { seed?: number }) {
     >
       <div className="animate-marquee flex shrink-0 gap-6 pr-6 [animation-direction:reverse]">
         {[...tokens, ...tokens].map((t, i) => (
-          <span key={`${t}-${i}`} className="font-mono text-[11px] whitespace-nowrap opacity-60">
-            {t} <span className="opacity-50">/</span>
+          <span key={`${t}-${i}`} className="font-mono text-[11px] whitespace-nowrap opacity-90">
+            {t} <span className="opacity-60">/</span>
           </span>
         ))}
       </div>

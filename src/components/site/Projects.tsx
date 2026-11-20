@@ -148,7 +148,7 @@ export function Projects() {
                                   src={photo.src}
                                   alt={photo.alt}
                                   loading="lazy"
-                                  className="size-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                                  className={`size-full object-cover transition-transform duration-500 group-hover/photo:scale-105 ${photo.anchorTop ? "object-top" : "object-center"}`}
                                 />
                               </div>
                               <p className="mt-2 text-xs leading-snug opacity-70">{photo.caption}</p>

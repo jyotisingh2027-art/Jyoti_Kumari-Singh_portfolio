@@ -165,7 +165,7 @@ import sihJury from "@/assets/sih/jury.jpg";
 import sihNews from "@/assets/sih/news.jpg";
 import sihAward from "@/assets/sih/award.jpg";
 
-export type ProjectPhoto = { src: string; alt: string; caption: string };
+export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTop?: boolean };
 
 export const projectGroups = [
   {
@@ -282,6 +282,7 @@ export const projectGroups = [
             src: sihNews,
             alt: "Newspaper clipping titled Hackathon winners about team Hack Six",
             caption: "In the news — “Hackathon winners”",
+            anchorTop: true,
           },
         ] as ProjectPhoto[],
       },

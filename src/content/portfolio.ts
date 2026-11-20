@@ -1,3 +1,4 @@
+import mastersUnionPhoto from "@/assets/masters-union.jpg";
 import nookHero from "@/assets/nook/lamplit-lane.jpg";
 import hvOverview from "@/assets/healvoy/overview.jpg";
 import ciscoLogo from "@/assets/certs/cisco.png";
@@ -79,7 +80,8 @@ export const education = [
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
     logoDark: true,
-    photoPlaceholder: "Coming soon...",
+    photo: mastersUnionPhoto,
+    photoAlt: "Jyoti in a black blazer at Masters' Union",
     location: "Gurugram, India",
     year: "2026 – Present",
   },

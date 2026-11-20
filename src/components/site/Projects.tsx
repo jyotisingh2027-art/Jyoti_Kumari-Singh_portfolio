@@ -22,12 +22,24 @@ export function Projects() {
 
         {projectGroups.map((group) => (
           <div key={group.heading} className="mt-14">
-            <h3 className="display text-2xl sm:text-3xl">
-              <span className="text-gold">{group.heading.split("—")[0]}</span>
-              {group.heading.includes("—") && (
-                <span className="opacity-70">—{group.heading.split("—")[1]}</span>
-              )}
-            </h3>
+            {"headingImage" in group && group.headingImage ? (
+              <h3>
+                <img
+                  src={String(group.headingImage)}
+                  alt={group.heading}
+                  width={900}
+                  loading="lazy"
+                  className="h-auto w-full max-w-[22rem] sm:max-w-md"
+                />
+              </h3>
+            ) : (
+              <h3 className="display text-2xl sm:text-3xl">
+                <span className="text-gold">{group.heading.split("—")[0]}</span>
+                {group.heading.includes("—") && (
+                  <span className="opacity-70">—{group.heading.split("—")[1]}</span>
+                )}
+              </h3>
+            )}
             <div className="mt-6">
               {group.projects.map((project, pIdx) => {
                 const node = (() => {

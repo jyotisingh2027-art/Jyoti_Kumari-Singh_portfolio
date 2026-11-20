@@ -1,3 +1,5 @@
+import headingPostGrad from "@/assets/heading-post-graduation.webp";
+import headingGrad from "@/assets/heading-graduation.webp";
 import sihLogoBg from "@/assets/sih/logo-full.png";
 import netfixlabLogo from "@/assets/netfixlab/logo.png";
 import nookLogo from "@/assets/nook/logo.png";
@@ -241,6 +243,7 @@ export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTo
 export const projectGroups = [
   {
     heading: "Post-Graduation",
+    headingImage: headingPostGrad,
     projects: [
       {
         index: "00",
@@ -448,6 +451,7 @@ export const projectGroups = [
   },
   {
     heading: "Graduation",
+    headingImage: headingGrad,
     projects: [
       {
         index: "01",

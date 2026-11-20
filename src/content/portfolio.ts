@@ -141,6 +141,12 @@ export const certifications = [
 ];
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";
+import sihWinners from "@/assets/sih/winners.jpg";
+import sihPresentation from "@/assets/sih/presentation.jpg";
+import sihJudging from "@/assets/sih/judging.jpg";
+import sihNews from "@/assets/sih/news.jpg";
+
+export type ProjectPhoto = { src: string; alt: string; caption: string };
 
 export const projectGroups = [
   {
@@ -203,6 +209,30 @@ export const projectGroups = [
         blurb:
           "Smart India Hackathon project at CSIR – Central Scientific Instruments Organization, Chandigarh (team of 6). The product monitors the quality of urban city wastewater for agricultural use. Worked on planning, procuring equipment, budgeting, presentation and documentation. As a team member, developed a website using Python, HTML, CSS, Bootstrap and PHP that provided a detailed view of water quality, compared results with the World Health Organization report and suggested solutions — with multi-linguistic support for English, Tamil and Hindi readers.",
         tags: ["Python", "HTML", "CSS", "Bootstrap", "PHP", "IoT"],
+        award:
+          "National Hackathon Winner — Smart India Hackathon — Hardware Edition (Ministry of Agriculture)",
+        gallery: [
+          {
+            src: sihWinners,
+            alt: "Team Hack Six holding the Smart India Hackathon 2019 winner's cheque and trophy",
+            caption: "Team Hack Six — winners, SIH 2019 Hardware Edition",
+          },
+          {
+            src: sihPresentation,
+            alt: "Team presenting the water quality monitoring prototype to the judging panel",
+            caption: "Presenting the prototype to the jury",
+          },
+          {
+            src: sihJudging,
+            alt: "Judges reviewing the team's evaluation documents at CSIR-CSIO",
+            caption: "Final evaluation at CSIR-CSIO, Chandigarh",
+          },
+          {
+            src: sihNews,
+            alt: "Newspaper clipping titled Hackathon winners about team Hack Six",
+            caption: "In the news — “Hackathon winners”",
+          },
+        ] as ProjectPhoto[],
       },
     ],
   },

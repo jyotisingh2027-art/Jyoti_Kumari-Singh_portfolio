@@ -13,7 +13,7 @@ export function Projects() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow opacity-60">Selected work</p>
-            <h2 className="display mt-4 text-5xl sm:text-7xl">Projects</h2>
+            <h2 className="display mt-4 text-5xl sm:text-7xl">My Work</h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed opacity-70">
             Work from my post-graduation programme and my undergraduate academic years.

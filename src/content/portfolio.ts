@@ -39,7 +39,7 @@ export const navLinks = [
   { label: "Journey", href: "#journey" },
   { label: "Skills", href: "#skills" },
   { label: "Certifications", href: "#certifications" },
-  { label: "Projects", href: "#projects" },
+  { label: "My Work", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 

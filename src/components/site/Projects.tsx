@@ -561,7 +561,6 @@ function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; 
           </button>
         </div>
       </div>
-      <figcaption className="mt-2 text-xs leading-snug opacity-70">{caption}</figcaption>
     </figure>
   );
 }

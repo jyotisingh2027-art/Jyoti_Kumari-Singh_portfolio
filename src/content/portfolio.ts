@@ -90,6 +90,7 @@ export const education = [
     logoAlt: "Masters' Union University logo",
     logoDark: true,
     cardBg: muCampusBg,
+    cardBgNatural: true,
     photo: mastersUnionPhoto,
     photoAlt: "Jyoti in a black blazer at Masters' Union",
     location: "Gurugram, India",

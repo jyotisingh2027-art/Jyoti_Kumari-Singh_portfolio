@@ -97,14 +97,16 @@ export function Projects() {
                       {"sectionLogoBg" in project && project.sectionLogoBg && (
                         <div
                           aria-hidden="true"
-                          className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2 bg-contain bg-center bg-no-repeat opacity-40"
+                          className={`pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2 bg-contain bg-center bg-no-repeat ${
+                            "sectionLight" in project && project.sectionLight ? "opacity-[0.14]" : "opacity-40"
+                          }`}
                           style={{ backgroundImage: `url(${String(project.sectionLogoBg)})` }}
                         />
                       )}
                       <div
                         className={
                           "sectionLight" in project && project.sectionLight
-                            ? "relative text-ink [&_.text-gold]:text-amber-700 [&_strong]:text-amber-700 [&_.bg-gold]:bg-gold [&_li]:border-ink/20"
+                            ? "relative font-medium text-[#14101c] [&_.opacity-70]:opacity-100 [&_.opacity-80]:opacity-100 [&_.text-gold]:text-amber-800 [&_strong]:text-amber-800 [&_.bg-gold]:bg-gold [&_li]:border-ink/20"
                             : "relative"
                         }
                       >

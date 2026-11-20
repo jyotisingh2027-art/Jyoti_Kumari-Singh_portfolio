@@ -232,7 +232,8 @@ export const projectGroups = [
           {
             heading: "My role",
             items: [
-              "Handled planning, procurement of equipment, budgeting, presentation and documentation for the team.",
+              "Project management: planned the build end to end, set milestones for the team of six, tracked progress through the five-day finale and owned the final presentation and documentation.",
+              "Budgeting and procurement: managed the full project budget and handled all purchasing (sensors, hardware components and equipment), plus the team's travel to the Grand Finale in Chandigarh.",
               "Built the website using Python, HTML, CSS, Bootstrap and PHP.",
             ],
           },

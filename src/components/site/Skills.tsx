@@ -118,21 +118,31 @@ function ScatterIcons({ icons }: { icons: string[] }) {
     const place = () => {
       const box = card.getBoundingClientRect();
       const pad = 20;
-      const blocked = [...card.querySelectorAll("h3, h4, p, li, img:not([data-scatter])")].map((el) => {
-        const r = el.getBoundingClientRect();
-        return { l: r.left - box.left - GAP, t: r.top - box.top - GAP, r: r.right - box.left + GAP, b: r.bottom - box.top + GAP };
+      // Measure the actual text on each line (not the full-width block), so the gap after a short line counts as free.
+      const rects: DOMRect[] = [];
+      card.querySelectorAll("h3, h4, p").forEach((el) => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        rects.push(...range.getClientRects());
       });
+      card.querySelectorAll("li, img:not([data-scatter])").forEach((el) => rects.push(el.getBoundingClientRect()));
+      const blocked = rects.map((r) => ({
+        l: r.left - box.left - GAP,
+        t: r.top - box.top - GAP,
+        r: r.right - box.left + GAP,
+        b: r.bottom - box.top + GAP,
+      }));
       // Only use the gaps between and beside the text: from under the title down to the last skill row.
       const rel = (el: Element) => el.getBoundingClientRect().top - box.top;
       const relBottom = (el: Element) => el.getBoundingClientRect().bottom - box.top;
       const title = card.querySelector("h3");
       const textEls = [...card.querySelectorAll("p, h4, li")];
       const yMin = title ? relBottom(title) + 4 : pad;
-      const yMax = textEls.length ? Math.max(...textEls.map(relBottom)) - ICON + 6 : box.height - pad - ICON;
+      const yMax = textEls.length ? Math.max(...textEls.map(relBottom)) - ICON + 4 : box.height - pad - ICON;
       void rel;
       const free: { x: number; y: number }[] = [];
-      for (let y = yMin; y <= yMax; y += 6) {
-        for (let x = pad; x <= box.width - pad - ICON; x += 6) {
+      for (let y = yMin; y <= yMax; y += 3) {
+        for (let x = pad; x <= box.width - pad - ICON; x += 4) {
           const hit = blocked.some((k) => x < k.r && x + ICON > k.l && y < k.b && y + ICON > k.t);
           if (!hit) free.push({ x, y });
         }

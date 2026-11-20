@@ -1,3 +1,8 @@
+import hvOverview from "@/assets/healvoy/overview.jpg";
+import hvParadox from "@/assets/healvoy/paradox.jpg";
+import hvGaps from "@/assets/healvoy/gaps.jpg";
+import hvJourney from "@/assets/healvoy/journey.jpg";
+import hvMarket from "@/assets/healvoy/market.jpg";
 import ciscoLogo from "@/assets/certs/cisco.png";
 import googleLogo from "@/assets/certs/google.png";
 import agilekbLogo from "@/assets/certs/agilekb.png";
@@ -248,6 +253,54 @@ export const projectGroups = [
           { src: nflVideoLesson, alt: "An animated video lesson: Why do devices talk?", caption: "Animated video lessons" },
           { src: nflAbout, alt: "About section: the comic and the person behind it", caption: "The comic, and the person behind it" },
           { src: nflPricing, alt: "Pricing: start free, pay once for the rest, plus FAQs", caption: "Freemium pricing — pay once" },
+        ] as ProjectPhoto[],
+      },
+      {
+        index: "00b",
+        title: "HealVoy",
+        category: "Market Research · Medical Tourism in India",
+        year: "2026",
+        tagline:
+          "A venture idea for one trusted, all-inclusive package for care in India: dental, surgical support and wellness for international patients and NRIs.",
+        blurb:
+          "Market research and venture design for medical tourism in India.",
+        highlightTags: ["Market Research", "Venture Design", "B2B SaaS"],
+        tags: ["Market Sizing", "Competitive Analysis", "Business Model", "Go-to-Market", "HealthTech"],
+        link: "https://drive.google.com/file/d/15f3n_JZ2xIe6r8Vpp3q8s8TaGmS53xXF/view?usp=drive_link",
+        linkLabel: "Read the research",
+        awardPhoto: {
+          src: hvOverview,
+          alt: "HealVoy overview: medical tourism arrivals to India, treatment cost comparison and the patient journey",
+          caption: "HealVoy — one trusted package for care in India",
+        } as ProjectPhoto,
+        points: [
+          {
+            heading: "The paradox",
+            items: [
+              "India is the **cheapest on all six procedures** benchmarked (a heart bypass costs 94% less than in the USA), yet medical arrivals fell 21% to 5.07 lakh in 2025 while Türkiye drew 13.99 lakh.",
+              "Traced the gap to four causes: a fragmented patient journey, a trust and image problem, thin marketing and no national data or provider directory.",
+            ],
+          },
+          {
+            heading: "The idea",
+            items: [
+              "HealVoy: a **B2B SaaS platform with a human care team** that helps Indian hospitals, dental clinics and wellness centres build, price, market and deliver all-inclusive packages.",
+              "Three packages (dental, surgical support, wellness and recovery) cover the whole trip, from visa and pickup to treatment, Ayurveda-led recovery and follow-up.",
+            ],
+          },
+          {
+            heading: "The opportunity",
+            items: [
+              "An **$8.7B market in 2025, projected at $16.2B by 2030**; arrivals from outside Bangladesh grew 12% in 2025.",
+              "Benchmarked competitors (Vaidam, Lyfboat, hospital desks) and planned a Delhi NCR surgery + Rishikesh/Kerala recovery pilot.",
+            ],
+          },
+        ],
+        gallery: [
+          { src: hvParadox, alt: "Slide: cheaper care, fewer patients — procedure prices by country", caption: "The paradox: cheaper care, fewer patients" },
+          { src: hvGaps, alt: "Slide: four gaps — journey, trust, marketing, data", caption: "Four gaps holding India back" },
+          { src: hvJourney, alt: "Slide: the patient journey from enquiry to follow-up", caption: "One package, enquiry to follow-up" },
+          { src: hvMarket, alt: "Slide: market size and top source countries", caption: "Market size and source countries" },
         ] as ProjectPhoto[],
       },
       {

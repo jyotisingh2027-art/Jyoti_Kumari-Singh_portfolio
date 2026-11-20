@@ -15,22 +15,20 @@ export function Certifications() {
               key={cert.name}
               className="flex flex-col items-center rounded-2xl border border-paper-foreground/15 bg-white/60 p-5 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-lift"
             >
-              <div
-                className={`grid h-16 place-items-center overflow-hidden rounded-xl shadow-sm ${
-                  cert.logo ? "w-32 bg-white ring-1 ring-ink/10" : "w-16 bg-ink text-gold"
-                }`}
-              >
-                {cert.logo ? (
-                  <img src={cert.logo} alt={`${cert.provider} logo`} className="size-full object-contain p-2" />
-                ) : (
-                  <span
-                    aria-label={cert.provider}
-                    className={`display tracking-wide ${cert.mark.length > 3 ? "text-sm" : "text-2xl"}`}
-                  >
-                    {cert.mark}
-                  </span>
-                )}
-              </div>
+              {cert.logo ? (
+                <img
+                  src={cert.logo}
+                  alt={`${cert.provider} logo`}
+                  className="h-14 w-auto max-w-[9rem] object-contain"
+                />
+              ) : (
+                <span
+                  aria-label={cert.provider}
+                  className="display grid size-14 place-items-center rounded-full bg-ink text-xl text-gold"
+                >
+                  {cert.mark}
+                </span>
+              )}
               <h3 className="mt-4 text-sm leading-snug font-semibold">{cert.name}</h3>
               <p className="mt-2 text-xs opacity-60">
                 {cert.provider} · {cert.date}

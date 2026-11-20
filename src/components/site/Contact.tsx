@@ -23,15 +23,15 @@ export function Contact() {
 
   return (
     <section id="contact" className="surface-ink relative overflow-hidden pt-24 pb-16">
-      <h2 className="display pointer-events-none px-4 pb-6 text-center text-[13vw] leading-[1.05]">
-        Contact
+      <h2 className="display pointer-events-none px-4 pb-6 text-center text-[9vw] leading-[1.05] whitespace-nowrap">
+        Let's Connect
       </h2>
 
       <div className="relative mx-auto mt-4 max-w-6xl px-6">
         <div className="grid gap-10 rounded-3xl bg-card p-8 shadow-lift sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div>
             <p className="eyebrow opacity-70">Reach me</p>
-            <h3 className="display mt-4 text-4xl">Let's Connect</h3>
+            <h3 className="display mt-4 text-4xl">Contact</h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Looking to collaborate, build, or simply connect? I’m all ears
             </p>

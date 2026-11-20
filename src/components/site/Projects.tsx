@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ArrowUpRight, MapPin, Trophy, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, MapPin, Trophy, Volume2, VolumeX, X } from "lucide-react";
 
 import { projectGroups, type ProjectPhoto } from "@/content/portfolio";
 
@@ -74,8 +74,12 @@ export function Projects() {
                 const gallery =
                   "gallery" in project && project.gallery ? (project.gallery as ProjectPhoto[]) : null;
 
-                if (gallery && "awardPhoto" in project && project.awardPhoto) {
-                  const awardPhoto = project.awardPhoto as ProjectPhoto;
+                const featureVideo =
+                  "featureVideo" in project && project.featureVideo
+                    ? (project.featureVideo as { src: string; poster: string; caption: string })
+                    : null;
+                if (gallery && (featureVideo || ("awardPhoto" in project && project.awardPhoto))) {
+                  const awardPhoto = ("awardPhoto" in project ? project.awardPhoto : null) as ProjectPhoto | null;
                   const points = ("points" in project ? project.points : []) as {
                     heading: string;
                     items: string[];
@@ -143,9 +147,12 @@ export function Projects() {
                             </>
                           )}
                         </div>
+                        {featureVideo ? (
+                          <AutoPlayVideo src={featureVideo.src} poster={featureVideo.poster} caption={featureVideo.caption} />
+                        ) : (
                         <button
   type="button"
-  onClick={() => setLightbox(awardPhoto)}
+  onClick={() => setLightbox(awardPhoto!)}
   aria-label={`Open photo: ${awardPhoto.caption}`}
   className="group/photo block w-full cursor-zoom-in text-left"
 >
@@ -158,6 +165,7 @@ export function Projects() {
                           </div>
                           <p className="mt-2 text-xs leading-snug opacity-70">{awardPhoto.caption}</p>
                         </button>
+                        )}
                       </div>
 
                       {/* Middle: product and project details */}
@@ -201,7 +209,9 @@ export function Projects() {
                       </ul>
 
                       {/* Bottom: supporting photos */}
-                      <ul className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+                      <ul
+                        className={`mt-10 grid grid-cols-2 gap-3 ${gallery.length === 5 ? "md:grid-cols-3 lg:grid-cols-5" : "md:grid-cols-4"}`}
+                      >
                         {gallery.map((photo) => (
                           <li key={photo.src}>
                             <button
@@ -336,5 +346,69 @@ function Lightbox({ photo, onClose }: { photo: ProjectPhoto | null; onClose: () 
         <figcaption className="mt-4 text-center text-sm text-white/80">{photo.caption}</figcaption>
       </figure>
     </div>
+  );
+}
+
+/**
+ * Plays muted while on screen and pauses when scrolled away.
+ * A sound button (shown on hover, always on touch screens) turns audio on.
+ */
+function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; caption: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const toggleSound = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.muted = !el.muted;
+    setMuted(el.muted);
+    if (!el.muted) el.play().catch(() => {});
+  };
+
+  return (
+    <figure className="group/video">
+      <div className="relative overflow-hidden rounded-2xl border border-sidebar-border bg-black">
+        <video
+          ref={ref}
+          src={src}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="block w-full"
+          aria-label={caption}
+        />
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-label={muted ? "Turn sound on" : "Turn sound off"}
+          className={`absolute right-4 bottom-4 inline-flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-xs font-bold text-white backdrop-blur transition-opacity hover:bg-black/85 ${
+            muted ? "opacity-100 md:opacity-0 md:group-hover/video:opacity-100" : "opacity-100"
+          }`}
+        >
+          {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+          {muted ? "Sound on" : "Mute"}
+        </button>
+      </div>
+      <figcaption className="mt-2 text-xs leading-snug opacity-70">{caption}</figcaption>
+    </figure>
   );
 }

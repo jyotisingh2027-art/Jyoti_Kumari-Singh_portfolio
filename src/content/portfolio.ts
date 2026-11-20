@@ -170,12 +170,65 @@ import chaosScenario from "@/assets/chaos/scenario.jpg";
 import chaosAnalysis from "@/assets/chaos/analysis.jpg";
 import chaosPersona from "@/assets/chaos/persona.jpg";
 
+import nflVideo from "@/assets/netfixlab/launch.mp4";
+import nflPoster from "@/assets/netfixlab/poster.jpg";
+import nflHome from "@/assets/netfixlab/home.jpg";
+import nflLessons from "@/assets/netfixlab/lessons.jpg";
+import nflAbout from "@/assets/netfixlab/about.jpg";
+import nflPricing from "@/assets/netfixlab/pricing.jpg";
+import nflVideoLesson from "@/assets/netfixlab/video-lesson.jpg";
+
 export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTop?: boolean };
 
 export const projectGroups = [
   {
     heading: "Post-Graduation",
     projects: [
+      {
+        index: "00",
+        title: "NetFixLab",
+        category: "AI-Built EdTech Product",
+        year: "2026",
+        tagline:
+          "An AI-built edtech product that teaches complete beginners home-network troubleshooting through comics and animated video lessons.",
+        blurb:
+          "NetFixLab teaches beginners how the internet reaches their devices and how to fix common problems themselves, one short comic lesson or animated video at a time.",
+        highlightTags: ["AI Product Development", "EdTech", "Freemium"],
+        tags: ["Supabase", "Dodo Payments", "Product Positioning", "Go-to-Market", "Comic-based Learning"],
+        link: "https://netfixlab.tech/",
+        linkLabel: "Visit NetFixLab",
+        featureVideo: { src: nflVideo, poster: nflPoster, caption: "NetFixLab launch video" },
+        points: [
+          {
+            heading: "The product",
+            items: [
+              "Launched NetFixLab, an **AI-built edtech product** teaching beginners home-network troubleshooting via comics: 28 lessons across two parts, each ending with a takeaway, a try-it task and a quiz.",
+              "Defined the target audience (**US beginners**) and positioned it as story-led learning, not study material.",
+            ],
+          },
+          {
+            heading: "Business model",
+            items: [
+              "Designed a **freemium model**: free starter lessons, then a one-time payment unlocks the full course via Dodo Payments.",
+              "No subscription; purchases are saved to the learner's account so lessons open on any device.",
+            ],
+          },
+          {
+            heading: "Build",
+            items: [
+              "Built user accounts and **lesson progress tracking on Supabase**.",
+              "Added guest engagement tracking to understand how visitors use the free lessons before signing up.",
+            ],
+          },
+        ],
+        gallery: [
+          { src: nflHome, alt: "NetFixLab home page: Your home runs on a network. Learn it from a comic.", caption: "Home — learn networking from a comic" },
+          { src: nflLessons, alt: "Course page showing comic-cover lesson cards in two parts", caption: "28 lessons, two parts" },
+          { src: nflVideoLesson, alt: "An animated video lesson: Why do devices talk?", caption: "Animated video lessons" },
+          { src: nflAbout, alt: "About section: the comic and the person behind it", caption: "The comic, and the person behind it" },
+          { src: nflPricing, alt: "Pricing: start free, pay once for the rest, plus FAQs", caption: "Freemium pricing — pay once" },
+        ] as ProjectPhoto[],
+      },
       {
         index: "01",
         title: "HR Tech & Staffing — Sector Map",

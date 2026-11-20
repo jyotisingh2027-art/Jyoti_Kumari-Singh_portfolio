@@ -4,9 +4,8 @@ import connectLeft from "@/assets/connect-left.png";
 import connectRight from "@/assets/connect-right.png";
 
 /*
- * Two people pulled apart, with a current that runs up the purple cable,
- * jumps between the plugs as a flickering bolt, and carries on down the
- * orange cable. Coordinates are in a 1000 x 371 viewBox:
+ * Two people pulled apart, with a flickering bolt of current jumping
+ * between their plugs. Coordinates are in a 1000 x 371 viewBox:
  *   left image  : x 0   – 485
  *   gap         : x 485 – 645
  *   right image : x 645 – 1000
@@ -17,25 +16,11 @@ const LEFT_W = 485;
 const GAP = 160;
 const RIGHT_W = 355;
 
-const PURPLE_CABLE =
-  "M0,323 L20,315 L40,302 L60,282 L80,257 L100,232 L120,211 L140,197 L160,186 L180,179 L200,174";
-const ORANGE_CABLE = (() => {
-  const pts: [number, number][] = [
-    [740, 180], [758, 190], [772, 200], [784, 210], [795, 220], [804, 230],
-    [813, 240], [821, 250], [826, 260], [830, 270], [832, 280], [831, 290],
-    [824, 300], [814, 310], [795, 320], [776, 330], [762, 340],
-  ];
-  return "M" + pts.map(([x, y]) => `${x + GAP},${y}`).join(" L");
-})();
-
 const BOLT_FROM = { x: 468, y: 155 };
 const BOLT_TO = { x: 498 + GAP, y: 157 };
 
-const CYCLE = 2600; // ms
-const A_END = 900; // purple pulse travels
-const B_END = 1550; // bolt flickers between plugs
-const C_END = 2400; // orange pulse travels
-const PULSE = 46; // visible length of the travelling pulse
+const CYCLE = 1900; // ms
+const BOLT_ON = 1300; // bolt visible for this part of each cycle
 
 function boltPath(jitter: number) {
   const n = 9;
@@ -52,28 +37,16 @@ function boltPath(jitter: number) {
 
 export function ConnectSpark({ children }: { children?: ReactNode }) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const purpleRef = useRef<SVGPathElement>(null);
-  const orangeRef = useRef<SVGPathElement>(null);
   const boltRefs = useRef<(SVGPathElement | null)[]>([]);
   const boltGroupRef = useRef<SVGGElement>(null);
   const glowLeftRef = useRef<SVGCircleElement>(null);
   const glowRightRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
-    const purple = purpleRef.current!;
-    const orange = orangeRef.current!;
     const boltGroup = boltGroupRef.current!;
-    const pLen = purple.getTotalLength();
-    const oLen = orange.getTotalLength();
-    purple.style.strokeDasharray = `${PULSE} ${pLen + PULSE}`;
-    orange.style.strokeDasharray = `${PULSE} ${oLen + PULSE}`;
-
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       boltGroup.style.opacity = "1";
-      boltRefs.current.forEach((b, i) => b?.setAttribute("d", boltPath(8 + i * 4)));
-      purple.style.opacity = "0";
-      orange.style.opacity = "0";
       return;
     }
 
@@ -85,41 +58,19 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
     const frame = (now: number) => {
       if (!start) start = now;
       const t = (now - start) % CYCLE;
-
-      // Phase A: pulse up the purple cable toward him
-      if (t < A_END) {
-        const p = t / A_END;
-        purple.style.opacity = "1";
-        purple.style.strokeDashoffset = `${PULSE - p * (pLen + PULSE)}`;
-      } else {
-        purple.style.opacity = "0";
-      }
-
-      // Phase B: bolt jumps between the plugs
-      const inB = t >= A_END - 120 && t < B_END;
-      if (inB) {
+      const on = t < BOLT_ON;
+      if (on) {
         if (now - lastBolt > 55) {
           lastBolt = now;
           boltRefs.current.forEach((b, i) => b?.setAttribute("d", boltPath(10 + i * 6)));
         }
-        const flick = 0.65 + Math.random() * 0.35;
-        boltGroup.style.opacity = String(flick);
+        boltGroup.style.opacity = String(0.65 + Math.random() * 0.35);
       } else {
         boltGroup.style.opacity = "0";
       }
-      const plugGlow = inB ? 0.9 : Math.max(0, 1 - Math.abs(t - (A_END + B_END) / 2) / 900) * 0.25;
-      glowLeftRef.current!.style.opacity = String(plugGlow);
-      glowRightRef.current!.style.opacity = String(plugGlow);
-
-      // Phase C: pulse runs on down the orange cable
-      if (t >= B_END - 80 && t < C_END) {
-        const p = (t - (B_END - 80)) / (C_END - B_END + 80);
-        orange.style.opacity = "1";
-        orange.style.strokeDashoffset = `${PULSE - p * (oLen + PULSE)}`;
-      } else {
-        orange.style.opacity = "0";
-      }
-
+      const glow = on ? 0.9 : 0;
+      glowLeftRef.current!.style.opacity = String(glow);
+      glowRightRef.current!.style.opacity = String(glow);
       raf = requestAnimationFrame(frame);
     };
 
@@ -195,30 +146,6 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
           </radialGradient>
         </defs>
 
-        {/* current pulses travelling along the cables */}
-        <path
-          ref={purpleRef}
-          d={PURPLE_CABLE}
-          fill="none"
-          stroke="#e9d4ff"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          filter="url(#spark-glow)"
-          style={{ opacity: 0 }}
-        />
-        <path
-          ref={orangeRef}
-          d={ORANGE_CABLE}
-          fill="none"
-          stroke="#ffe3c2"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          filter="url(#spark-glow)"
-          style={{ opacity: 0 }}
-        />
-
         {/* glow at the plug tips */}
         <circle ref={glowLeftRef} cx={BOLT_FROM.x - 4} cy={BOLT_FROM.y} r="34" fill="url(#plug-glow-l)" style={{ opacity: 0 }} />
         <circle ref={glowRightRef} cx={BOLT_TO.x + 4} cy={BOLT_TO.y} r="34" fill="url(#plug-glow-r)" style={{ opacity: 0 }} />
@@ -246,7 +173,7 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
       {children && (
         <div
           className="absolute -translate-x-1/2"
-          style={{ left: "50%", bottom: `${(28 / H) * 100}%` }}
+          style={{ left: "50%", bottom: 0 }}
         >
           {children}
         </div>

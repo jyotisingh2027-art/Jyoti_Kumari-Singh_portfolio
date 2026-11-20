@@ -220,3 +220,22 @@
   text-transform: uppercase;
   font-weight: 700;
 }
+
+/* Seek bar thumb for the project video player */
+input[type="range"][aria-label="Seek video"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgb(0 0 0 / 0.35);
+}
+input[type="range"][aria-label="Seek video"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--gold);
+}
+/* video-seek */

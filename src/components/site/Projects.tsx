@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, MapPin, Trophy, Volume2, VolumeX, X } from "lucide-react";
+import { ArrowUpRight, MapPin, Pause, Play, Trophy, Volume2, VolumeX, X } from "lucide-react";
 
 import { projectGroups, type ProjectPhoto } from "@/content/portfolio";
 
@@ -370,11 +370,15 @@ function Lightbox({ photo, onClose }: { photo: ProjectPhoto | null; onClose: () 
 
 /**
  * Plays muted while on screen and pauses when scrolled away.
- * A sound button (shown on hover, always on touch screens) turns audio on.
+ * A YouTube-style control bar (play/pause, draggable seek bar, time, sound)
+ * appears on hover, and stays visible on touch screens.
  */
 function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; caption: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const [time, setTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -401,6 +405,28 @@ function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; 
     if (!el.muted) el.play().catch(() => {});
   };
 
+  const togglePlay = () => {
+    const el = ref.current;
+    if (!el) return;
+    if (el.paused) el.play().catch(() => {});
+    else el.pause();
+  };
+
+  const seek = (value: number) => {
+    const el = ref.current;
+    if (!el) return;
+    el.currentTime = value;
+    setTime(value);
+  };
+
+  const fmt = (t: number) => {
+    const m = Math.floor(t / 60);
+    const sec = Math.floor(t % 60);
+    return `${m}:${String(sec).padStart(2, "0")}`;
+  };
+
+  const pct = duration ? (time / duration) * 100 : 0;
+
   return (
     <figure className="group/video">
       <div className="relative overflow-hidden rounded-2xl border border-sidebar-border bg-black">
@@ -412,20 +438,54 @@ function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; 
           loop
           playsInline
           preload="metadata"
-          className="block w-full"
+          onClick={togglePlay}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
+          onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+          className="block w-full cursor-pointer"
           aria-label={caption}
         />
-        <button
-          type="button"
-          onClick={toggleSound}
-          aria-label={muted ? "Turn sound on" : "Turn sound off"}
-          className={`absolute right-4 bottom-4 inline-flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 text-xs font-bold text-white backdrop-blur transition-opacity hover:bg-black/85 ${
-            muted ? "opacity-100 md:opacity-0 md:group-hover/video:opacity-100" : "opacity-100"
-          }`}
-        >
-          {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
-          {muted ? "Sound on" : "Mute"}
-        </button>
+
+        {/* Control bar */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-black/85 to-transparent px-4 pt-8 pb-3 text-white opacity-100 transition-opacity md:opacity-0 md:group-hover/video:opacity-100 md:focus-within:opacity-100">
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause video" : "Play video"}
+            className="grid size-8 shrink-0 place-items-center rounded-full hover:bg-white/15"
+          >
+            {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
+          </button>
+
+          <input
+            type="range"
+            min={0}
+            max={duration || 0}
+            step={0.1}
+            value={time}
+            onChange={(e) => seek(Number(e.currentTarget.value))}
+            aria-label="Seek video"
+            className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full accent-[var(--gold)]"
+            style={{
+              background: `linear-gradient(to right, var(--gold) ${pct}%, rgb(255 255 255 / 0.3) ${pct}%)`,
+            }}
+          />
+
+          <span className="shrink-0 text-xs tabular-nums opacity-90">
+            {fmt(time)} / {fmt(duration)}
+          </span>
+
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={muted ? "Turn sound on" : "Turn sound off"}
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-bold hover:bg-white/25"
+          >
+            {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+            {muted ? "Sound on" : "Mute"}
+          </button>
+        </div>
       </div>
       <figcaption className="mt-2 text-xs leading-snug opacity-70">{caption}</figcaption>
     </figure>

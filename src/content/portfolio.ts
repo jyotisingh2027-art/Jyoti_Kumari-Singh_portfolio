@@ -1,3 +1,4 @@
+import school10thPhoto from "@/assets/school-10th.jpg";
 import muLogo from "@/assets/mu-logo.png";
 import kcgLogo from "@/assets/kcg-logo.png";
 import graduationPhoto from "@/assets/graduation.jpg";
@@ -36,6 +37,8 @@ export const education = [
     score: "CBSE · 9.4 CGPA",
     location: "Chennai",
     year: "2014",
+    photo: school10thPhoto,
+    photoAlt: "Jyoti in her Kendriya Vidyalaya school uniform",
   },
   {
     step: "02",

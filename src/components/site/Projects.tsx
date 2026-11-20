@@ -124,7 +124,17 @@ export function Projects() {
                                   {String(project.comingSoon)}
                                 </p>
                               )}
-                              <h4 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">{project.title}</h4>
+                              {"titleLogo" in project && project.titleLogo ? (
+                                <h4 className="mt-5">
+                                  <img
+                                    src={String(project.titleLogo)}
+                                    alt={project.title}
+                                    className="h-24 w-auto object-contain sm:h-28 lg:h-32"
+                                  />
+                                </h4>
+                              ) : (
+                                <h4 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">{project.title}</h4>
+                              )}
                               {"tagline" in project && project.tagline && (
                                 <p className="mt-4 text-base leading-relaxed opacity-80 sm:text-lg">
                                   {String(project.tagline)}

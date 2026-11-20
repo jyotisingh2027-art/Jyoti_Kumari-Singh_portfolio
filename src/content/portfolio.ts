@@ -1,3 +1,4 @@
+import nookLogo from "@/assets/nook/logo.png";
 import muLogoFull from "@/assets/mu-logo-full.png";
 import muCampusBg from "@/assets/mu-campus.jpg";
 import kcgCampusBg from "@/assets/kcg-campus.jpg";
@@ -340,6 +341,7 @@ export const projectGroups = [
       {
         index: "00c",
         title: "Nook",
+        titleLogo: nookLogo,
         category: "macOS App · In development",
         year: "2026",
         tagline:

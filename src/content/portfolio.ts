@@ -205,6 +205,15 @@ export const projectGroups = [
         link: "https://netfixlab.tech/",
         linkLabel: "Visit NetFixLab",
         featureVideo: { src: nflVideo, poster: nflPoster, caption: "NetFixLab launch video" },
+        channels: [
+          { label: "LinkedIn", href: "https://www.linkedin.com/company/144128279/" },
+          {
+            label: "Reddit",
+            href: "https://www.reddit.com/r/SideProject/comments/1xx0ag5/networking_finally_made_sense_to_my_friends_when/",
+          },
+          { label: "X", href: "https://x.com/jo4109fy8/status/2121964763525816498" },
+          { label: "Product Hunt", href: "https://www.producthunt.com/products/netfixlab" },
+        ],
         points: [
           {
             heading: "The product",

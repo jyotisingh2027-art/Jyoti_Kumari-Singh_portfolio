@@ -144,6 +144,25 @@ export function Projects() {
                                   {"linkLabel" in project ? project.linkLabel : "Open"} <ArrowUpRight className="size-4" />
                                 </a>
                               )}
+                              {"channels" in project && project.channels && (
+                                <div className="mt-8">
+                                  <p className="eyebrow opacity-70">Distribution channels</p>
+                                  <ul className="mt-3 flex flex-wrap gap-2">
+                                    {(project.channels as { label: string; href: string }[]).map((ch) => (
+                                      <li key={ch.label}>
+                                        <a
+                                          href={ch.href}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1.5 rounded-full border border-sidebar-border px-4 py-2 text-sm font-semibold transition-colors hover:bg-foreground hover:text-background"
+                                        >
+                                          {ch.label} <ArrowUpRight className="size-3.5" />
+                                        </a>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
                             </>
                           )}
                         </div>

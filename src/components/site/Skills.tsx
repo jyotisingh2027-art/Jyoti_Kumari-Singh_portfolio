@@ -38,7 +38,7 @@ export function Skills() {
         className="pointer-events-none absolute inset-0 bg-cover bg-bottom md:bg-fixed"
         style={{ backgroundImage: `url(${workspaceBg})` }}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-paper/55" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-paper/35" />
       <div className="relative mx-auto max-w-7xl px-6">
         <p className="eyebrow opacity-60">What I do</p>
         <h2 className="display mt-4 text-5xl sm:text-7xl">
@@ -49,7 +49,7 @@ export function Skills() {
           {skills.map((skill) => (
             <article
               key={skill.title}
-              className="group relative flex flex-col rounded-3xl border border-paper-foreground/15 bg-paper/85 p-8 text-paper-foreground shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-background/95 hover:text-foreground"
+              className="group relative flex flex-col rounded-3xl border border-paper-foreground/25 bg-paper/25 p-8 text-paper-foreground transition-colors duration-300 hover:bg-paper/60"
             >
               {ICONS[skill.title]?.[0] && (
                 <img
@@ -73,7 +73,7 @@ export function Skills() {
                         {group.items.map((item) => (
                           <li
                             key={item}
-                            className="rounded-full border border-current/25 px-3 py-1 text-xs font-semibold"
+                            className="rounded-full border border-current/30 bg-white/70 px-3 py-1 text-xs font-semibold"
                           >
                             {item}
                           </li>
@@ -87,7 +87,7 @@ export function Skills() {
                   {skill.items.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-current/25 px-3 py-1 text-xs font-semibold"
+                      className="rounded-full border border-current/30 bg-white/70 px-3 py-1 text-xs font-semibold"
                     >
                       {item}
                     </li>

@@ -151,7 +151,7 @@ export type ProjectPhoto = { src: string; alt: string; caption: string };
 
 export const projectGroups = [
   {
-    heading: "Post-Graduation Projects",
+    heading: "Post-Graduation",
     projects: [
       {
         index: "01",

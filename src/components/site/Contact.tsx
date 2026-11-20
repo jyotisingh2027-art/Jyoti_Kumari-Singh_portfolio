@@ -83,7 +83,7 @@ export function Contact() {
                   title="Resume"
                   className="block transition-transform hover:-translate-y-0.5"
                 >
-                  <ResumeIcon className="h-16 w-14" />
+                  <ResumeIcon className="h-20 w-[70px]" />
                 </a>
               </li>
             </ul>

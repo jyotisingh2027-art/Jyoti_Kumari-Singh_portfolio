@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, MapPin, Pause, Play, Trophy, Volume2, VolumeX, X } from "lucide-react";
 
 import { projectGroups, type ProjectPhoto } from "@/content/portfolio";
@@ -8,7 +8,7 @@ export function Projects() {
 
   return (
     <>
-    <section id="projects" className="surface-ink py-28">
+    <section id="projects" className="surface-ink overflow-x-clip py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
@@ -28,8 +28,9 @@ export function Projects() {
                 <span className="opacity-70">—{group.heading.split("—")[1]}</span>
               )}
             </h3>
-            <div className="mt-6 border-t border-sidebar-border">
-              {group.projects.map((project) => {
+            <div className="mt-6">
+              {group.projects.map((project, pIdx) => {
+                const node = (() => {
                 const inner = (
                   <>
                     <span className="display text-2xl opacity-40">{project.index}</span>
@@ -69,7 +70,7 @@ export function Projects() {
                 );
 
                 const className =
-                  "group grid gap-4 border-b border-sidebar-border py-8 transition-colors hover:bg-sidebar-accent md:grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)_auto] md:items-center md:gap-10 md:px-4";
+                  "group grid gap-4 py-8 transition-colors hover:bg-sidebar-accent md:grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)_auto] md:items-center md:gap-10 md:px-4";
 
                 const gallery =
                   "gallery" in project && project.gallery ? (project.gallery as ProjectPhoto[]) : null;
@@ -85,7 +86,7 @@ export function Projects() {
                     items: string[];
                   }[];
                   return (
-                    <article key={project.index} className="border-b border-sidebar-border py-10 md:px-4">
+                    <article key={project.index} className="py-10 md:px-4">
                       {/* Top: award details (left) + award photo (right) */}
                       <div
                         className={`grid items-center gap-8 lg:gap-12 ${
@@ -261,12 +262,12 @@ export function Projects() {
 
                 if (screens && "link" in project && project.link) {
                   return (
-                    <div key={project.index} className="border-b border-sidebar-border">
+                    <div key={project.index}>
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={className.replace("border-b border-sidebar-border ", "")}
+                        className={className}
                         aria-label={`${project.title} — ${project.linkLabel}`}
                       >
                         {inner}
@@ -312,6 +313,13 @@ export function Projects() {
                   <div key={project.index} className={className}>
                     {inner}
                   </div>
+                );
+                })();
+                return (
+                  <Fragment key={project.index}>
+                    {node}
+                    <CodeMarquee seed={pIdx + group.heading.length} />
+                  </Fragment>
                 );
               })}
             </div>
@@ -489,5 +497,52 @@ function AutoPlayVideo({ src, poster, caption }: { src: string; poster: string; 
       </div>
       <figcaption className="mt-2 text-xs leading-snug opacity-70">{caption}</figcaption>
     </figure>
+  );
+}
+
+const CODE_TOKENS = [
+  "0x7F000001",
+  "192.168.1.1/24",
+  "10110010",
+  "fe80::1ff:fe23:4567:890a",
+  "TCP/443",
+  "0xDEADBEEF",
+  "VLAN 20",
+  "00:1A:2B:3C:4D:5E",
+  "ping 8.8.8.8",
+  "11000000.10101000",
+  "BGP AS65001",
+  "0xC0A80001",
+  "DNS → 1.1.1.1",
+  "01001110 01000101 01010100",
+  "ARP who-has 10.0.0.1",
+  "0xFF",
+  "OSPF area 0",
+  "255.255.255.0",
+  "SYN → SYN-ACK → ACK",
+  "0x1F4",
+  "TTL=64",
+  "10.10.0.0/16",
+  "11111111",
+  "HTTP 200 OK",
+];
+
+/** Full-width band of scrolling network / binary / hex snippets, used as a divider between projects. */
+function CodeMarquee({ seed = 0 }: { seed?: number }) {
+  const offset = seed % CODE_TOKENS.length;
+  const tokens = [...CODE_TOKENS.slice(offset), ...CODE_TOKENS.slice(0, offset)];
+  return (
+    <div
+      aria-hidden="true"
+      className="relative left-1/2 my-6 flex w-screen -translate-x-1/2 overflow-hidden bg-background py-3 text-foreground"
+    >
+      <div className="animate-marquee flex shrink-0 gap-8 pr-8 [animation-direction:reverse]">
+        {[...tokens, ...tokens].map((t, i) => (
+          <span key={`${t}-${i}`} className="font-mono text-sm whitespace-nowrap opacity-90 sm:text-base">
+            {t} <span className="text-gold opacity-70">/</span>
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }

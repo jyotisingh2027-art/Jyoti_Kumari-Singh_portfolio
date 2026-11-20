@@ -72,7 +72,7 @@ export function Hero() {
       <div className="surface-ink absolute inset-x-0 bottom-0 flex overflow-hidden py-4">
         <div className="animate-marquee flex shrink-0 gap-10 pr-10">
           {[...marqueeWords, ...marqueeWords].map((word, i) => (
-            <span key={`${word}-${i}`} className="display text-xl whitespace-nowrap opacity-90">
+            <span key={`${word}-${i}`} className="display text-xl whitespace-nowrap opacity-90 lowercase">
               {word} <span className="opacity-40">/</span>
             </span>
           ))}

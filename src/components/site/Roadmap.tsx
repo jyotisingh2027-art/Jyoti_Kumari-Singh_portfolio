@@ -260,7 +260,7 @@ function RoadmapCard({
 
       <div
         className={cn(
-          "relative mt-5 flex items-center justify-between border-t pt-4 text-xs font-semibold tracking-widest lowercase opacity-70",
+          "relative mt-5 flex items-center justify-between border-t pt-4 text-xs font-semibold tracking-widest uppercase opacity-70",
           right ? "border-sidebar-border" : "border-ink/15",
         )}
       >

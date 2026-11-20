@@ -1,3 +1,4 @@
+import muCampusBg from "@/assets/mu-campus.jpg";
 import kcgCampusBg from "@/assets/kcg-campus.jpg";
 import kvGardenBg from "@/assets/kv-garden.jpg";
 import kvSchoolBg from "@/assets/kv-school.jpg";
@@ -86,6 +87,7 @@ export const education = [
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
     logoDark: true,
+    cardBg: muCampusBg,
     photo: mastersUnionPhoto,
     photoAlt: "Jyoti in a black blazer at Masters' Union",
     location: "Gurugram, India",

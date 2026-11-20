@@ -67,11 +67,11 @@ export const education = [
   {
     step: "04",
     stage: "Post Graduate Programme – Technology & Business Management",
-    school: "Masters' Union",
+    school: "Masters' Union University",
     score: "",
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
-    logoWide: true,
+    logoDark: true,
     photoPlaceholder: "Coming soon...",
     location: "Gurugram, India",
     year: "2026 – Present",

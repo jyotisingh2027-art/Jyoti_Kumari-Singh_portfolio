@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 
 import { education } from "@/content/portfolio";
 import classroomBg from "@/assets/classroom.jpg";
+import blurPortrait from "@/assets/jyoti-hero.png";
 import { cn } from "@/lib/utils";
 
 /**
@@ -163,21 +164,41 @@ function RoadmapCard({
       )}
 
       {"photoPlaceholder" in stop && stop.photoPlaceholder && (
-        <div className="absolute top-8 right-6 grid aspect-[3/4] w-20 rotate-3 place-items-center rounded-xl border-4 border-white bg-white/10 p-2 text-center shadow-lift backdrop-blur-sm sm:top-9 sm:right-9 sm:w-28">
-          <span className="text-xs font-semibold italic opacity-90 sm:text-sm">
-            {stop.photoPlaceholder}
-          </span>
+        <div className="absolute top-8 right-6 aspect-[3/4] w-28 rotate-3 overflow-hidden rounded-xl border-4 border-white shadow-lift sm:top-9 sm:right-9 sm:w-40">
+          {/* Deliberately blurred: the picture comes into focus at graduation */}
+          <img
+            src={blurPortrait}
+            alt=""
+            aria-hidden="true"
+            className="size-full scale-125 object-cover blur-md"
+          />
+          <div className="absolute inset-0 grid place-items-center bg-black/25 p-2 text-center">
+            <span className="text-sm font-semibold text-white italic drop-shadow sm:text-base">
+              {stop.photoPlaceholder}
+            </span>
+          </div>
         </div>
       )}
 
       <div
         className={cn(
           (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
-            ("photoWide" in stop && stop.photoWide ? "pr-36 sm:pr-56" : "pr-24 sm:pr-36"),
+            ("photoWide" in stop && stop.photoWide
+              ? "pr-36 sm:pr-56"
+              : "photoPlaceholder" in stop && stop.photoPlaceholder
+                ? "pr-32 sm:pr-48"
+                : "pr-24 sm:pr-36"),
         )}
       >
         <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
-        <h3 className="display mt-2 text-3xl sm:text-4xl">{stop.stage}</h3>
+        <h3
+          className={cn(
+            "display mt-2",
+            stop.stage.length > 30 ? "text-2xl leading-tight sm:text-[1.75rem]" : "text-3xl sm:text-4xl",
+          )}
+        >
+          {stop.stage}
+        </h3>
         <p className="mt-3 flex items-center gap-3 text-base font-bold">
           {"logo" in stop && stop.logo && (
             <img
@@ -185,8 +206,8 @@ function RoadmapCard({
               alt={"logoAlt" in stop ? stop.logoAlt : ""}
               className={cn(
                 "shrink-0 object-contain shadow-sm",
-                "logoWide" in stop && stop.logoWide
-                  ? "h-10 w-auto rounded-lg bg-black"
+                "logoDark" in stop && stop.logoDark
+                  ? "size-10 rounded-full bg-black ring-1 ring-white/20"
                   : "size-10 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
               )}
             />

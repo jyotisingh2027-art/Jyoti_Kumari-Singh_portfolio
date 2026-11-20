@@ -14,8 +14,10 @@ const LEFT_W = 485;
 const RIGHT_W = 355;
 const W = 1237; // ~30% of the width tall, so the gap scales with the card
 const GAP = W - LEFT_W - RIGHT_W;
+// he steps back a little so his front leg clears the heading
+const LEFT_SHIFT = 50;
 
-const BOLT_FROM = { x: 468, y: 155 };
+const BOLT_FROM = { x: 468 - LEFT_SHIFT, y: 155 };
 const BOLT_TO = { x: 498 + GAP, y: 157 };
 
 // "Let's Connect" fills the space from his front leg to her front shoe
@@ -108,8 +110,8 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
         alt=""
         width={LEFT_W}
         height={H}
-        className="absolute bottom-0 left-0 h-full w-auto"
-        style={{ width: `${(LEFT_W / W) * 100}%` }}
+        className="absolute bottom-0 h-full w-auto"
+        style={{ left: `${(-LEFT_SHIFT / W) * 100}%`, width: `${(LEFT_W / W) * 100}%` }}
       />
       <img
         src={connectRight}

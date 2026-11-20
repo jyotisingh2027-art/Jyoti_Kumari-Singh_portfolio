@@ -1,3 +1,4 @@
+import netfixlabLogo from "@/assets/netfixlab/logo.png";
 import nookLogo from "@/assets/nook/logo.png";
 import muLogoFull from "@/assets/mu-logo-full.png";
 import muCampusBg from "@/assets/mu-campus.jpg";
@@ -243,6 +244,7 @@ export const projectGroups = [
       {
         index: "00",
         title: "NetFixLab",
+        titleLogo: netfixlabLogo,
         category: "AI-Built EdTech Product",
         year: "2026",
         tagline:

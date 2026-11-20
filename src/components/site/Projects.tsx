@@ -119,6 +119,11 @@ export function Projects() {
                               <p className="eyebrow text-gold">
                                 {project.category} · {project.year}
                               </p>
+                              {"comingSoon" in project && project.comingSoon && (
+                                <p className="mt-3 inline-flex rounded-full border border-gold/60 px-3 py-1 text-xs font-semibold text-gold italic">
+                                  {String(project.comingSoon)}
+                                </p>
+                              )}
                               <h4 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">{project.title}</h4>
                               {"tagline" in project && project.tagline && (
                                 <p className="mt-4 text-base leading-relaxed opacity-80 sm:text-lg">
@@ -176,7 +181,13 @@ export function Projects() {
   aria-label={`Open photo: ${awardPhoto.caption}`}
   className="group/photo block w-full cursor-zoom-in text-left"
 >
-                          <div className="overflow-hidden rounded-2xl border border-sidebar-border">
+                          <div className="relative overflow-hidden rounded-2xl border border-sidebar-border">
+                            {"comingSoon" in project && project.comingSoon && (
+                              <span className="absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-gold-foreground shadow-lift">
+                                <span className="size-2 animate-pulse rounded-full bg-gold-foreground" />
+                                {String(project.comingSoon)}
+                              </span>
+                            )}
                             <img
                               src={awardPhoto.src}
                               alt={awardPhoto.alt}

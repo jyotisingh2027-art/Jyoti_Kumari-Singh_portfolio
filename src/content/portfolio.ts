@@ -1,3 +1,8 @@
+import nookHero from "@/assets/nook/lamplit-lane.jpg";
+import nookFireside from "@/assets/nook/fireside.jpg";
+import nookPorch from "@/assets/nook/porch-cocoa.jpg";
+import nookLakeside from "@/assets/nook/lakeside-dock.jpg";
+import nookDusk from "@/assets/nook/violet-dusk.jpg";
 import hvOverview from "@/assets/healvoy/overview.jpg";
 import ciscoLogo from "@/assets/certs/cisco.png";
 import googleLogo from "@/assets/certs/google.png";
@@ -293,6 +298,54 @@ export const projectGroups = [
           },
         ],
         gallery: [
+        ] as ProjectPhoto[],
+      },
+      {
+        index: "00c",
+        title: "Nook",
+        category: "macOS App · In development",
+        year: "2026",
+        tagline:
+          "A cozy desktop overlay for macOS: seasonal weather and little toys live on top of your real desktop. Version 1 is winter.",
+        blurb: "A cozy desktop overlay for macOS.",
+        comingSoon: "Releasing soon…",
+        highlightTags: ["Product Design", "Desktop App", "Swift"],
+        tags: ["macOS", "SpriteKit", "SwiftUI", "AppKit", "Privacy-first"],
+        link: "https://github.com/jyotisingh2027-art/Nook",
+        linkLabel: "View on GitHub",
+        awardPhoto: {
+          src: nookHero,
+          alt: "Nook winter wallpaper: a snowy lamplit village lane at dusk",
+          caption: "Nook — Lamplit Lane wallpaper",
+        } as ProjectPhoto,
+        points: [
+          {
+            heading: "The product",
+            items: [
+              "A **cozy desktop overlay** that brings seasonal weather and small decorations onto your real Mac desktop, starting with winter.",
+              "Free, with **no accounts and no tracking**; everything stays on the user's Mac.",
+            ],
+          },
+          {
+            heading: "Features",
+            items: [
+              "Snow settles on the tops of windows and the Dock; fling, resize or close a window and its snow flies off or tumbles down, while clicks still pass through to apps.",
+              "Design your own desktop decorations (Christmas trees, snowmen, string lights, wreaths) and pick from cozy winter wallpapers or your own photos and videos.",
+            ],
+          },
+          {
+            heading: "Build",
+            items: [
+              "Native macOS app in **Swift** (AppKit, SpriteKit, SwiftUI), with new seasons plugging in through a shared Season design.",
+              "Battery-aware: pauses for full-screen apps and when the screen sleeps, and shows fewer flakes on battery.",
+            ],
+          },
+        ],
+        gallery: [
+          { src: nookFireside, alt: "Nook wallpaper: fireside living room with Christmas tree", caption: "Fireside" },
+          { src: nookPorch, alt: "Nook wallpaper: snowy porch with cocoa and a snowman", caption: "Porch & Cocoa" },
+          { src: nookLakeside, alt: "Nook wallpaper: lakeside cabin and dock at night", caption: "Lakeside Dock" },
+          { src: nookDusk, alt: "Nook wallpaper: snowy cabin at violet dusk", caption: "Violet Dusk" },
         ] as ProjectPhoto[],
       },
       {

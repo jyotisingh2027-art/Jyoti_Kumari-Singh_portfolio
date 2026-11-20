@@ -143,6 +143,18 @@ function RoadmapCard({
           : "border-2 border-ink/15 bg-paper text-paper-foreground",
       )}
     >
+      {"cardBg" in stop && stop.cardBg && (
+        <>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem] bg-cover bg-center"
+            style={{ backgroundImage: `url(${stop.cardBg})` }}
+          />
+          {/* light wash so the text stays readable over the photo */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-paper/75" />
+        </>
+      )}
+
       {/* pin dot */}
       <span
         aria-hidden="true"
@@ -155,7 +167,7 @@ function RoadmapCard({
           alt={"photoAlt" in stop ? stop.photoAlt : ""}
           loading="lazy"
           className={cn(
-            "absolute top-8 right-6 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9",
+            "absolute top-8 right-6 z-10 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9",
             "photoWide" in stop && stop.photoWide
               ? "aspect-[7/4] w-32 sm:w-48"
               : "aspect-[3/4] w-20 sm:w-28",
@@ -182,6 +194,7 @@ function RoadmapCard({
 
       <div
         className={cn(
+          "relative",
           (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
             ("photoWide" in stop && stop.photoWide
               ? "pr-36 sm:pr-56"
@@ -221,7 +234,7 @@ function RoadmapCard({
 
       <div
         className={cn(
-          "mt-5 flex items-center justify-between border-t pt-4 text-xs font-semibold tracking-widest uppercase opacity-70",
+          "relative mt-5 flex items-center justify-between border-t pt-4 text-xs font-semibold tracking-widest uppercase opacity-70",
           right ? "border-sidebar-border" : "border-ink/15",
         )}
       >

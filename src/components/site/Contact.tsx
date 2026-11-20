@@ -27,10 +27,8 @@ export function Contact() {
 
       <div className="relative mx-auto mt-4 max-w-6xl px-6">
         <ConnectSpark>
-          <h2 className="display text-center text-[5.2cqw] leading-[0.95]">
-            Let's
-            <br />
-            Connect
+          <h2 className="display whitespace-nowrap text-center text-[7.5cqw] leading-[0.95]">
+            Let's Connect
           </h2>
         </ConnectSpark>
         <div className="relative z-10 grid gap-10 rounded-3xl bg-card p-8 shadow-lift sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">

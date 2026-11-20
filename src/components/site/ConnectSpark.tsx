@@ -246,7 +246,7 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
       {children && (
         <div
           className="absolute -translate-x-1/2"
-          style={{ left: "50%", bottom: `${(10 / H) * 100}%` }}
+          style={{ left: "50%", bottom: `${(28 / H) * 100}%` }}
         >
           {children}
         </div>

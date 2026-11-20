@@ -93,6 +93,7 @@ export const education = [
     logoFull: muLogoFull,
     cardBg: muCampusBg,
     cardBgNatural: true,
+    cardBgSoft: true,
     photo: mastersUnionPhoto,
     photoAlt: "Jyoti in a black blazer at Masters' Union",
     location: "Gurugram, India",

@@ -31,7 +31,7 @@ export function Contact() {
             Let's Connect
           </h2>
         </ConnectSpark>
-        <div className="relative z-10 grid gap-8 rounded-3xl bg-gold p-6 text-gold-foreground shadow-lift [&_.border-input]:border-gold-foreground/30 [&_.text-muted-foreground]:text-gold-foreground/80 [&_input]:placeholder:text-gold-foreground/55 [&_textarea]:placeholder:text-gold-foreground/55 [&_.ring-ring]:ring-gold-foreground sm:p-8 lg:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <div className="relative z-10 grid gap-8 rounded-3xl bg-gold p-6 text-gold-foreground shadow-lift [&_.border-input]:border-white [&_input]:bg-white [&_textarea]:bg-white [&_.text-muted-foreground]:text-gold-foreground/80 [&_input]:placeholder:text-gold-foreground/55 [&_textarea]:placeholder:text-gold-foreground/55 [&_.ring-ring]:ring-gold-foreground sm:p-8 lg:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div>
             <p className="eyebrow opacity-70">Reach me</p>
             <h3 className="display mt-2 text-3xl">Contact</h3>
@@ -82,7 +82,7 @@ export function Contact() {
                     aria-label={label}
                     className="group flex flex-col items-center gap-2"
                   >
-                    <span className="grid size-12 place-items-center rounded-full border border-gold-foreground/40 transition-all group-hover:-translate-y-0.5 group-hover:bg-gold-foreground group-hover:text-gold">
+                    <span className="grid size-12 place-items-center rounded-full border border-white bg-white transition-all group-hover:-translate-y-0.5 group-hover:bg-gold-foreground group-hover:text-gold">
                       <Icon className="size-6" />
                     </span>
                     <span className="text-xs font-semibold opacity-80">{label}</span>
@@ -92,7 +92,7 @@ export function Contact() {
             </ul>
           </div>
 
-          <form onSubmit={onSubmit} className="grid gap-3">
+          <form onSubmit={onSubmit} className="grid gap-3 rounded-2xl bg-white/45 p-4 sm:p-5">
             <div className="grid gap-3 sm:grid-cols-2">
               <Input required name="firstName" placeholder="First name" aria-label="First name" />
               <Input required name="lastName" placeholder="Last name" aria-label="Last name" />

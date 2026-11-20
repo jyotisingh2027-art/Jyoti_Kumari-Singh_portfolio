@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,7 +38,8 @@ export function Contact() {
             <dl className="mt-8 space-y-4 text-sm">
               <div>
                 <dt className="eyebrow opacity-60">Email</dt>
-                <dd className="mt-1 font-semibold">
+                <dd className="mt-1 flex items-center gap-2 font-semibold">
+                  <Mail className="size-4 shrink-0 opacity-80" aria-hidden="true" />
                   <a href={`mailto:${profile.email}`} className="hover:underline underline-offset-4">
                     {profile.email}
                   </a>
@@ -45,7 +47,8 @@ export function Contact() {
               </div>
               <div>
                 <dt className="eyebrow opacity-60">Phone</dt>
-                <dd className="mt-1 font-semibold">
+                <dd className="mt-1 flex items-center gap-2 font-semibold">
+                  <Phone className="size-4 shrink-0 opacity-80" aria-hidden="true" />
                   <a href={`tel:${profile.phone.replace(/-/g, "")}`} className="hover:underline underline-offset-4">
                     {profile.phone}
                   </a>
@@ -53,7 +56,10 @@ export function Contact() {
               </div>
               <div>
                 <dt className="eyebrow opacity-60">Location</dt>
-                <dd className="mt-1 font-semibold">{profile.location}</dd>
+                <dd className="mt-1 flex items-center gap-2 font-semibold">
+                  <MapPin className="size-4 shrink-0 opacity-80" aria-hidden="true" />
+                  {profile.location}
+                </dd>
               </div>
             </dl>
             <ul className="mt-8 flex flex-wrap gap-6">

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MapPin } from "lucide-react";
 
 import { education } from "@/content/portfolio";
+import classroomBg from "@/assets/classroom.jpg";
 import { cn } from "@/lib/utils";
 
 /**
@@ -206,7 +207,15 @@ export function Roadmap() {
 
   return (
     <section id="journey" className="surface-paper relative overflow-hidden py-28">
-      <div className="mx-auto max-w-7xl px-6">
+      {/* Classroom sketch behind the whole section; stays put while the roadmap scrolls over it */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center md:bg-fixed"
+        style={{ backgroundImage: `url(${classroomBg})` }}
+      />
+      {/* Soft paper wash so the headline and cards stay easy to read */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-paper/70" />
+      <div className="relative mx-auto max-w-7xl px-6">
         <p className="eyebrow opacity-60">How I got here</p>
         <h2 className="display mt-4 max-w-4xl text-5xl sm:text-7xl">
           THE ROADMAP THAT <span className="text-outline-ink">BROUGHT ME HERE</span>

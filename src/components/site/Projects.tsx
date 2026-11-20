@@ -103,7 +103,16 @@ export function Projects() {
                         <div
                           aria-hidden="true"
                           className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2"
-                          style={{ backgroundColor: String(project.sectionBg) }}
+                          style={{
+                            backgroundColor: String(project.sectionBg),
+                            ...("sectionPattern" in project && project.sectionPattern === "dots"
+                              ? {
+                                  backgroundImage:
+                                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Crect x='2' y='6' width='2' height='2' fill='%23dcd8c9'/%3E%3C/svg%3E\")",
+                                  backgroundSize: "12px 12px",
+                                }
+                              : {}),
+                          }}
                         />
                       )}
                       {"sectionLogoBg" in project && project.sectionLogoBg && (
@@ -118,7 +127,7 @@ export function Projects() {
                       <div
                         className={
                           "sectionLight" in project && project.sectionLight
-                            ? "relative font-medium text-[#14101c] [&_.opacity-70]:opacity-100 [&_.opacity-80]:opacity-100 [&_.text-gold]:text-amber-800 [&_strong]:text-amber-800 [&_.bg-gold]:bg-gold [&_li]:border-ink/20"
+                            ? "relative font-medium text-[#14101c] [&_.opacity-70]:opacity-100 [&_.opacity-80]:opacity-100 [&_.text-gold]:text-amber-800 [&_strong]:text-amber-800 [&_.bg-gold]:bg-gold [&_li]:border-ink/20 [&_.border-sidebar-border]:border-[#14101c]/30 [&_a.bg-foreground]:bg-[#14101c] [&_a.bg-foreground]:text-white"
                             : "relative"
                         }
                       >

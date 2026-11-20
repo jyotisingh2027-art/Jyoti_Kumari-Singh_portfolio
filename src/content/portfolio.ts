@@ -249,6 +249,9 @@ export const projectGroups = [
         index: "00",
         title: "NetFixLab",
         titleLogo: netfixlabLogo,
+        sectionBg: "#faf4df",
+        sectionPattern: "dots",
+        sectionLight: true,
         category: "AI-Built EdTech Product",
         year: "2026",
         tagline:

@@ -56,27 +56,34 @@ export function Contact() {
                 <dd className="mt-1 font-semibold">{profile.location}</dd>
               </div>
             </dl>
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {socials.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex rounded-full border border-border px-4 py-2 text-xs font-semibold transition-colors hover:bg-accent"
-                  >
-                    {social.label}
-                  </a>
-                </li>
-              ))}
+            <ul className="mt-8 flex flex-wrap items-end gap-4">
+              {socials.map((social) => {
+                const Icon = social.label === "GitHub" ? GitHubIcon : LinkedInIcon;
+                return (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      title={social.label}
+                      className="grid size-14 place-items-center rounded-full border border-border transition-all hover:-translate-y-0.5 hover:bg-foreground hover:text-background"
+                    >
+                      <Icon className="size-6" />
+                    </a>
+                  </li>
+                );
+              })}
               <li>
                 <a
                   href={resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex rounded-full border border-border px-4 py-2 text-xs font-semibold transition-colors hover:bg-accent"
+                  aria-label="Resume (PDF)"
+                  title="Resume"
+                  className="block transition-transform hover:-translate-y-0.5"
                 >
-                  Resume
+                  <ResumeIcon className="h-16 w-14" />
                 </a>
               </li>
             </ul>
@@ -104,5 +111,50 @@ export function Contact() {
       </div>
 
     </section>
+  );
+}
+
+type IconProps = { className?: string };
+
+function GitHubIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.3 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
+/** Stacked sheets of paper with "RESUME" written on the front page. */
+function ResumeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 56 64" fill="none" aria-hidden="true" className={className}>
+      <rect x="10" y="2" width="42" height="54" rx="5" fill="currentColor" opacity="0.35" />
+      <rect x="4" y="8" width="42" height="54" rx="5" fill="currentColor" />
+      <text
+        x="25"
+        y="24"
+        textAnchor="middle"
+        fontSize="9"
+        fontWeight="800"
+        letterSpacing="0.5"
+        fill="var(--background)"
+        fontFamily="Manrope, ui-sans-serif, system-ui, sans-serif"
+      >
+        RESUME
+      </text>
+      <g stroke="var(--background)" strokeWidth="2.4" strokeLinecap="round" opacity="0.55">
+        <path d="M12 33h26" />
+        <path d="M12 40h26" />
+        <path d="M12 47h18" />
+      </g>
+    </svg>
   );
 }

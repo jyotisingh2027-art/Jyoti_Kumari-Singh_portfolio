@@ -1,3 +1,4 @@
+import kvGardenBg from "@/assets/kv-garden.jpg";
 import kvSchoolBg from "@/assets/kv-school.jpg";
 import mastersUnionPhoto from "@/assets/masters-union.jpg";
 import nookHero from "@/assets/nook/lamplit-lane.jpg";
@@ -58,6 +59,7 @@ export const education = [
     score: "CBSE Board",
     location: "Chennai",
     year: "2016",
+    cardBg: kvGardenBg,
     photo: school12thPhoto,
     photoAlt: "Jyoti with her 12th standard classmates and teacher at Kendriya Vidyalaya",
     photoWide: true,

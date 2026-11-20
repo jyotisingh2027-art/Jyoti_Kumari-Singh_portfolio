@@ -86,12 +86,18 @@ export const education = [
 ];
 
 export const marqueeWords = [
-  "Web Development",
-  "UI Engineering",
-  "API Design",
-  "Performance",
-  "Motion",
-  "Accessibility",
+  "Product Thinking",
+  "Network Engineering",
+  "Data Centre Infrastructure",
+  "Software Development",
+  "AI-Built Products",
+  "Team Leadership",
+  "Mentoring Engineers",
+  "Customer Delivery",
+  "Root-Cause Debugging",
+  "Go-to-Market",
+  "Market Research",
+  "Stakeholder Alignment",
 ];
 
 export const stats = [

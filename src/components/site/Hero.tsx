@@ -15,12 +15,12 @@ export function Hero() {
       style={{ "--hero": "oklch(0.51 0.16 300)" } as React.CSSProperties}
     >
       {/* Full portrait, uncropped; sits closer to the text on wide screens */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[1023/1537] h-full max-w-full lg:right-[4%] xl:right-[10%] 2xl:right-[16%]">
+      <div className="pointer-events-none absolute inset-y-0 right-0 aspect-[780/950] h-full max-w-full lg:right-[4%] xl:right-[10%] 2xl:right-[16%]">
         <img
           src={heroPortrait}
           alt={`Portrait of ${profile.brand}`}
-          width={1023}
-          height={1537}
+          width={780}
+          height={950}
           className="size-full object-contain object-bottom opacity-60"
         />
         {/* Soft, even purple wash so the photo reads as a faded background */}

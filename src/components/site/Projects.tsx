@@ -81,6 +81,8 @@ export function Projects() {
                       {/* Top: award details (left) + award photo (right) */}
                       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
                         <div>
+                          {"award" in project && project.award ? (
+                            <>
                           <div className="rounded-3xl bg-gold p-6 text-gold-foreground shadow-lift sm:p-8">
                             <p className="flex items-start gap-3 text-sm font-bold tracking-wide uppercase sm:text-base">
                               <Trophy className="mt-0.5 size-5 shrink-0" />
@@ -95,7 +97,41 @@ export function Projects() {
                               </p>
                             )}
                           </div>
-                          <h4 className="display mt-8 text-3xl sm:text-4xl lg:text-5xl">{project.title}</h4>
+                              <h4 className="display mt-8 text-3xl sm:text-4xl lg:text-5xl">{project.title}</h4>
+                            </>
+                          ) : (
+                            <>
+                              <p className="eyebrow text-gold">
+                                {project.category} · {project.year}
+                              </p>
+                              <h4 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">{project.title}</h4>
+                              {"tagline" in project && project.tagline && (
+                                <p className="mt-4 text-base leading-relaxed opacity-80 sm:text-lg">
+                                  {String(project.tagline)}
+                                </p>
+                              )}
+                              <ul className="mt-6 flex flex-wrap gap-2">
+                                {("highlightTags" in project ? (project.highlightTags as string[]) : []).map((tag) => (
+                                  <li
+                                    key={tag}
+                                    className="rounded-full bg-gold px-4 py-1.5 text-sm font-bold text-gold-foreground"
+                                  >
+                                    {tag}
+                                  </li>
+                                ))}
+                              </ul>
+                              {"link" in project && project.link && (
+                                <a
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5"
+                                >
+                                  {"linkLabel" in project ? project.linkLabel : "Open"} <ArrowUpRight className="size-4" />
+                                </a>
+                              )}
+                            </>
+                          )}
                         </div>
                         <a
                           href={awardPhoto.src}
@@ -115,7 +151,10 @@ export function Projects() {
                       </div>
 
                       {/* Middle: product and project details */}
-                      <div className="mt-12 grid gap-8 md:grid-cols-3">
+                      {points.length === 0 && (
+                        <p className="mt-12 max-w-4xl text-base leading-relaxed opacity-80">{project.blurb}</p>
+                      )}
+                      <div className={points.length ? "mt-12 grid gap-8 md:grid-cols-3" : "hidden"}>
                         {points.map((block) => (
                           <div key={block.heading}>
                             <p className="eyebrow text-gold">{block.heading}</p>

@@ -220,8 +220,13 @@ export const projectGroups = [
         tags: ["AI-Generated Visuals", "Prompt Design", "Persona Engine", "UX Writing", "Rapid Prototyping"],
         link: "https://corporate-chaos.lovable.app",
         linkLabel: "Play the Game",
-        screens: [
-          { src: chaosLanding, alt: "Corporate Chaos landing page with an Employee of the Month card", caption: "Landing — enter the jungle" },
+        tagline: "Survive the corporate jungle — a satirical office-survival game, built end to end with AI.",
+        awardPhoto: {
+          src: chaosLanding,
+          alt: "Corporate Chaos landing page: 'Survive the corporate jungle' with an Employee of the Month card",
+          caption: "Landing — “Survive the corporate jungle.”",
+        } as ProjectPhoto,
+        gallery: [
           { src: chaosOnboarding, alt: "Employee onboarding screen to create a corporate badge ID", caption: "Onboarding — build your badge" },
           { src: chaosScenario, alt: "A workplace scenario question with four answer choices and a stress meter", caption: "10 scenarios per level" },
           { src: chaosAnalysis, alt: "Chaos Corp AI analysis showing survival rate and trait meters", caption: "AI analysis of your habits" },

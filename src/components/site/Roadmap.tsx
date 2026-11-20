@@ -194,7 +194,7 @@ function RoadmapCard({
         <h3
           className={cn(
             "display mt-2",
-            stop.stage.length > 30 ? "text-2xl leading-tight sm:text-[1.75rem]" : "text-3xl sm:text-4xl",
+            stop.stage.length > 30 ? "text-2xl leading-tight" : "text-3xl sm:text-4xl",
           )}
         >
           {stop.stage}

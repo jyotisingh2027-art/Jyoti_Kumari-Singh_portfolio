@@ -5,25 +5,28 @@ import connectRight from "@/assets/connect-right.png";
 
 /*
  * Two people pulled apart, with a flickering bolt of current jumping
- * between their plugs. Coordinates are in a 1000 x 371 viewBox:
- *   left image  : x 0   – 485
- *   gap         : x 485 – 645
- *   right image : x 645 – 1000
+ * between their plugs. Coordinates are in a W x 371 viewBox:
+ *   left image  : x 0 – 485, right image : last 355 units
  */
-const W = 1000;
+// Figures sit at the two edges of the card; the gap between them is whatever is left.
 const H = 371;
 const LEFT_W = 485;
-const GAP = 160;
 const RIGHT_W = 355;
+const W = 1237; // ~30% of the width tall, so the gap scales with the card
+const GAP = W - LEFT_W - RIGHT_W;
 
 const BOLT_FROM = { x: 468, y: 155 };
 const BOLT_TO = { x: 498 + GAP, y: 157 };
+
+// "Let's Connect" fills the space from his front leg to her front shoe
+const TEXT_FROM = 335;
+const TEXT_TO = 490 + GAP;
 
 const CYCLE = 1900; // ms
 const BOLT_ON = 1300; // bolt visible for this part of each cycle
 
 function boltPath(jitter: number) {
-  const n = 9;
+  const n = 15;
   let d = `M${BOLT_FROM.x},${BOLT_FROM.y}`;
   for (let i = 1; i < n; i++) {
     const t = i / n;
@@ -94,7 +97,7 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
   return (
     <div
       ref={wrapRef}
-      className="pointer-events-none relative z-0 mx-auto -mb-[3px] w-full max-w-4xl select-none"
+      className="pointer-events-none relative z-0 -mb-[3px] w-full select-none"
       style={{ aspectRatio: `${W} / ${H}`, containerType: "inline-size" }}
     >
       <span className="sr-only">
@@ -172,8 +175,8 @@ export function ConnectSpark({ children }: { children?: ReactNode }) {
 
       {children && (
         <div
-          className="absolute -translate-x-1/2"
-          style={{ left: "50%", bottom: 0 }}
+          className="absolute flex justify-center"
+          style={{ left: `${(TEXT_FROM / W) * 100}%`, right: `${((W - TEXT_TO) / W) * 100}%`, bottom: 0 }}
         >
           {children}
         </div>

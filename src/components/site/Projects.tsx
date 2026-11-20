@@ -162,7 +162,17 @@ export function Projects() {
                               {block.items.map((item) => (
                                 <li key={item} className="flex gap-3">
                                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
-                                  <span>{item}</span>
+                                  <span>
+                                    {item.split("**").map((part, i) =>
+                                      i % 2 === 1 ? (
+                                        <strong key={i} className="font-bold text-gold">
+                                          {part}
+                                        </strong>
+                                      ) : (
+                                        part
+                                      ),
+                                    )}
+                                  </span>
                                 </li>
                               ))}
                             </ul>

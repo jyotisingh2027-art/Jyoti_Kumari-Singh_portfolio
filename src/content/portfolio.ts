@@ -260,9 +260,9 @@ export const projectGroups = [
           {
             heading: "The product",
             items: [
-              "Water Quality Monitoring (WAQM): a sensor-based system that monitors the quality of urban city wastewater to check whether it is fit for agricultural use.",
-              "A companion website gives a detailed view of water quality, compares readings with World Health Organization guidelines and suggests corrective solutions.",
-              "Multilingual support for English, Tamil and Hindi readers, so farmers and officials can use it in their own language.",
+              "Water Quality Monitoring (WAQM): a sensor-based system that monitors the quality of water for agricultural use, measuring temperature, turbidity, pH and electrical conductivity.",
+              "A **Decision Tree Classifier (Artificial Intelligence) algorithm** compares each observed value against its nominal range to classify whether the water is fit for use.",
+              "Results can be viewed on the website and mobile app, which compares readings with World Health Organization guidelines, suggests corrective solutions and supports English, Tamil and Hindi readers.",
             ],
           },
           {

@@ -225,21 +225,29 @@ function RoadmapCard({
         >
           {stop.stage}
         </h3>
+        {"logoFull" in stop && stop.logoFull ? (
+          <p className="mt-4">
+            <span className="inline-flex items-center rounded-xl bg-black px-4 py-2 shadow-lift">
+              <img src={stop.logoFull} alt={stop.school} className="h-10 w-auto object-contain sm:h-12" />
+            </span>
+          </p>
+        ) : (
         <p className="mt-3 flex items-center gap-3 text-base font-bold">
-          {"logo" in stop && stop.logo && (
-            <img
-              src={stop.logo}
-              alt={"logoAlt" in stop ? stop.logoAlt : ""}
-              className={cn(
-                "shrink-0 object-contain shadow-sm",
-                "logoDark" in stop && stop.logoDark
-                  ? "size-10 rounded-full bg-black ring-1 ring-white/20"
-                  : "size-10 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
-              )}
-            />
-          )}
-          <span>{stop.school}</span>
-        </p>
+            {"logo" in stop && stop.logo && (
+              <img
+                src={stop.logo}
+                alt={"logoAlt" in stop ? stop.logoAlt : ""}
+                className={cn(
+                  "shrink-0 object-contain shadow-sm",
+                  "logoDark" in stop && stop.logoDark
+                    ? "size-10 rounded-full bg-black ring-1 ring-white/20"
+                    : "size-10 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
+                )}
+              />
+            )}
+            <span>{stop.school}</span>
+          </p>
+        )}
         {stop.score && (
           <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
         )}

@@ -1,3 +1,4 @@
+import muLogoFull from "@/assets/mu-logo-full.png";
 import muCampusBg from "@/assets/mu-campus.jpg";
 import kcgCampusBg from "@/assets/kcg-campus.jpg";
 import kvGardenBg from "@/assets/kv-garden.jpg";
@@ -89,6 +90,7 @@ export const education = [
     logo: muLogo,
     logoAlt: "Masters' Union University logo",
     logoDark: true,
+    logoFull: muLogoFull,
     cardBg: muCampusBg,
     cardBgNatural: true,
     photo: mastersUnionPhoto,

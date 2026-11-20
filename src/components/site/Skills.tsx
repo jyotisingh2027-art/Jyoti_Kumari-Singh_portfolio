@@ -9,7 +9,7 @@ export function Skills() {
           Skills &amp; <span className="text-outline-ink">Stack</span>
         </h2>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill) => (
             <article
               key={skill.title}

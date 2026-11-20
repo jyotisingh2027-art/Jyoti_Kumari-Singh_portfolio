@@ -1,8 +1,4 @@
 import nookHero from "@/assets/nook/lamplit-lane.jpg";
-import nookFireside from "@/assets/nook/fireside.jpg";
-import nookPorch from "@/assets/nook/porch-cocoa.jpg";
-import nookLakeside from "@/assets/nook/lakeside-dock.jpg";
-import nookDusk from "@/assets/nook/violet-dusk.jpg";
 import hvOverview from "@/assets/healvoy/overview.jpg";
 import ciscoLogo from "@/assets/certs/cisco.png";
 import googleLogo from "@/assets/certs/google.png";
@@ -156,7 +152,26 @@ export const skills = [
         ],
       },
     ],
-  },
+  },,
+  {
+    title: "AI Skills",
+    blurb: "Using AI to build, automate and ship real products end to end.",
+    groups: [
+      {
+        heading: "Product",
+        items: [
+          "AI Product Development",
+          "Rapid Prototyping",
+          "Prompt Design",
+          "AI-Generated Visuals",
+        ],
+      },
+      {
+        heading: "Automation & ML",
+        items: ["Workflow Automation (Make.com)", "Decision Tree Classifier", "Persona / Scoring Engines"],
+      },
+    ],
+  }
 ];
 
 export const certifications: {
@@ -342,10 +357,6 @@ export const projectGroups = [
           },
         ],
         gallery: [
-          { src: nookFireside, alt: "Nook wallpaper: fireside living room with Christmas tree", caption: "Fireside" },
-          { src: nookPorch, alt: "Nook wallpaper: snowy porch with cocoa and a snowman", caption: "Porch & Cocoa" },
-          { src: nookLakeside, alt: "Nook wallpaper: lakeside cabin and dock at night", caption: "Lakeside Dock" },
-          { src: nookDusk, alt: "Nook wallpaper: snowy cabin at violet dusk", caption: "Violet Dusk" },
         ] as ProjectPhoto[],
       },
       {

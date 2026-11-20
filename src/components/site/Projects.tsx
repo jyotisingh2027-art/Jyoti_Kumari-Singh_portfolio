@@ -229,7 +229,7 @@ export function Projects() {
 
                       {/* Bottom: supporting photos */}
                       <ul
-                        className={`mt-10 grid grid-cols-2 gap-3 ${gallery.length === 5 ? "md:grid-cols-3 lg:grid-cols-5" : "md:grid-cols-4"}`}
+                        className={`mt-10 grid grid-cols-2 gap-3 ${gallery.length === 0 ? "hidden" : ""} ${gallery.length === 5 ? "md:grid-cols-3 lg:grid-cols-5" : "md:grid-cols-4"}`}
                       >
                         {gallery.map((photo) => (
                           <li key={photo.src}>

@@ -1,8 +1,4 @@
 import hvOverview from "@/assets/healvoy/overview.jpg";
-import hvParadox from "@/assets/healvoy/paradox.jpg";
-import hvGaps from "@/assets/healvoy/gaps.jpg";
-import hvJourney from "@/assets/healvoy/journey.jpg";
-import hvMarket from "@/assets/healvoy/market.jpg";
 import ciscoLogo from "@/assets/certs/cisco.png";
 import googleLogo from "@/assets/certs/google.png";
 import agilekbLogo from "@/assets/certs/agilekb.png";
@@ -297,10 +293,6 @@ export const projectGroups = [
           },
         ],
         gallery: [
-          { src: hvParadox, alt: "Slide: cheaper care, fewer patients — procedure prices by country", caption: "The paradox: cheaper care, fewer patients" },
-          { src: hvGaps, alt: "Slide: four gaps — journey, trust, marketing, data", caption: "Four gaps holding India back" },
-          { src: hvJourney, alt: "Slide: the patient journey from enquiry to follow-up", caption: "One package, enquiry to follow-up" },
-          { src: hvMarket, alt: "Slide: market size and top source countries", caption: "Market size and source countries" },
         ] as ProjectPhoto[],
       },
       {

@@ -160,7 +160,16 @@ function RoadmapCard({
       <div className={cn("photo" in stop && stop.photo && "pr-24 sm:pr-36")}>
         <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
         <h3 className="display mt-2 text-3xl sm:text-4xl">{stop.stage}</h3>
-        <p className="mt-3 text-base font-bold">{stop.school}</p>
+        <p className="mt-3 flex items-center gap-3 text-base font-bold">
+          {"logo" in stop && stop.logo && (
+            <img
+              src={stop.logo}
+              alt={"logoAlt" in stop ? stop.logoAlt : ""}
+              className="size-10 shrink-0 rounded-full bg-white object-contain p-0.5 shadow-sm ring-1 ring-ink/10"
+            />
+          )}
+          <span>{stop.school}</span>
+        </p>
         <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
       </div>
 

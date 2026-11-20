@@ -1,3 +1,4 @@
+import kcgLogo from "@/assets/kcg-logo.png";
 import graduationPhoto from "@/assets/graduation.jpg";
 /**
  * All placeholder copy for the portfolio lives here.
@@ -50,6 +51,8 @@ export const education = [
     score: "8.3 CGPA",
     location: "Chennai",
     year: "2016 – 2020",
+    logo: kcgLogo,
+    logoAlt: "KCG College of Technology logo",
     photo: graduationPhoto,
     photoAlt: "Jyoti at her Anna University graduation, holding her degree certificate",
   },

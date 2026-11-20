@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { profile, navLinks } from "@/content/portfolio";
+import { navLinks } from "@/content/portfolio";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,9 +25,8 @@ export function SiteNav() {
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
-        <a href="#home" className="display text-2xl tracking-wide">
-          {profile.brand}
-        </a>
+        {/* Spacer keeps the menu centred now that the name is no longer shown here */}
+        <div className="md:flex-1" aria-hidden="true" />
 
         <ul className="hidden items-center gap-9 text-sm font-semibold md:flex">
           {navLinks.map((link) => (
@@ -42,7 +41,7 @@ export function SiteNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-end gap-2 md:flex-1">
           <a
             href="#contact"
             className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105 md:inline-flex"

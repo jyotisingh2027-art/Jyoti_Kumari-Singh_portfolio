@@ -33,7 +33,7 @@ export const profile = {
   tagline:
     "I work at the intersection of technology and business to solve complex problems and build the bridge to possibility.",
   location: "Gurugram, India",
-  email: "jyoti.singh2027@gmail.com",
+  email: "jyoti.singh2027@mastersunion.org",
   phone: "+91-7010448420",
   availability: "Technology × Business × Problem Solving",
 };

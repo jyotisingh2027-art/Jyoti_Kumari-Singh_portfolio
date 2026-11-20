@@ -31,7 +31,7 @@ export function Contact() {
             Let's Connect
           </h2>
         </ConnectSpark>
-        <div className="relative z-10 grid gap-8 rounded-3xl bg-card p-6 shadow-lift sm:p-8 lg:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <div className="relative z-10 grid gap-8 rounded-3xl bg-gold p-6 text-gold-foreground shadow-lift [&_.border-input]:border-gold-foreground/30 [&_.text-muted-foreground]:text-gold-foreground/80 [&_input]:placeholder:text-gold-foreground/55 [&_textarea]:placeholder:text-gold-foreground/55 [&_.ring-ring]:ring-gold-foreground sm:p-8 lg:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div>
             <p className="eyebrow opacity-70">Reach me</p>
             <h3 className="display mt-2 text-3xl">Contact</h3>
@@ -82,7 +82,7 @@ export function Contact() {
                     aria-label={label}
                     className="group flex flex-col items-center gap-2"
                   >
-                    <span className="grid size-12 place-items-center rounded-full border border-border transition-all group-hover:-translate-y-0.5 group-hover:bg-foreground group-hover:text-background">
+                    <span className="grid size-12 place-items-center rounded-full border border-gold-foreground/40 transition-all group-hover:-translate-y-0.5 group-hover:bg-gold-foreground group-hover:text-gold">
                       <Icon className="size-6" />
                     </span>
                     <span className="text-xs font-semibold opacity-80">{label}</span>
@@ -106,7 +106,7 @@ export function Contact() {
               placeholder="Type your message here"
               aria-label="Message"
             />
-            <Button type="submit" size="lg" disabled={sending} className="rounded-full">
+            <Button type="submit" size="lg" disabled={sending} className="rounded-full bg-gold-foreground text-gold hover:bg-gold-foreground/90">
               {sending ? "Sending..." : "Send message"}
             </Button>
           </form>

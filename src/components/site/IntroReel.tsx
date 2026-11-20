@@ -66,7 +66,11 @@ export function IntroReel() {
         onClick={toggle}
         aria-label={playing ? "Pause reel" : "Play reel"}
         variant="destructive"
-        className="absolute top-1/2 left-1/2 z-10 grid size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-border p-0 shadow-lift backdrop-blur transition-transform hover:scale-105"
+        className={`absolute top-1/2 left-1/2 z-10 grid size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border p-0 transition-all duration-500 hover:scale-105 ${
+          playing
+            ? "border-white/40 bg-white/10 text-white opacity-40 shadow-none backdrop-blur-[2px] hover:bg-white/20 hover:opacity-100"
+            : "border-border shadow-lift backdrop-blur"
+        }`}
       >
         {playing ? <Pause className="size-7" /> : <Play className="size-7" />}
       </Button>

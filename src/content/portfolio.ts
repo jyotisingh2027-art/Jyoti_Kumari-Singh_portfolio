@@ -148,14 +148,21 @@ export const skills = [
   },
 ];
 
-export const certifications = [
-  { name: "Cisco Certified Specialist – Data Center Core (DCCOR)", provider: "Cisco", date: "Mar’24" },
-  { name: "Ansible for Network Automation (D0457)", provider: "RedHat", date: "Jan’23" },
-  { name: "Google Project Management Certificate", provider: "Google", date: "Jun’23" },
-  { name: "Agile Project Management Course", provider: "AgileKB via Udemy", date: "Feb’23" },
-  { name: "VMware-certified specialist", provider: "VMware", date: "Sep’22" },
-  { name: "Cisco Certified Network Associate (CCNA)", provider: "Cisco", date: "July’20" },
-  { name: "Cisco Devnet Associate (DEVASEC)", provider: "Cisco", date: "June’20" },
+export const certifications: {
+  name: string;
+  provider: string;
+  date: string;
+  /** Short issuer mark shown until an official logo file is added via `logo`. */
+  mark: string;
+  logo?: string;
+}[] = [
+  { name: "Cisco Certified Specialist – Data Center Core (DCCOR)", provider: "Cisco", date: "Mar’24", mark: "CISCO" },
+  { name: "Google Project Management Certificate", provider: "Google", date: "Jun’23", mark: "G" },
+  { name: "Agile Project Management Course", provider: "AgileKB via Udemy", date: "Feb’23", mark: "U" },
+  { name: "Ansible for Network Automation (D0457)", provider: "Red Hat", date: "Jan’23", mark: "RH" },
+  { name: "VMware Certified Specialist", provider: "VMware", date: "Sep’22", mark: "VM" },
+  { name: "Cisco Certified Network Associate (CCNA)", provider: "Cisco", date: "Jul’20", mark: "CISCO" },
+  { name: "Cisco DevNet Associate (DEVASC)", provider: "Cisco", date: "Jun’20", mark: "CISCO" },
 ];
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";

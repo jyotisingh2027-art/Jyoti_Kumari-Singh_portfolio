@@ -1,3 +1,4 @@
+import school12thPhoto from "@/assets/school-12th.jpg";
 import school10thPhoto from "@/assets/school-10th.jpg";
 import muLogo from "@/assets/mu-logo.png";
 import kcgLogo from "@/assets/kcg-logo.png";
@@ -47,6 +48,9 @@ export const education = [
     score: "CBSE Board",
     location: "Chennai",
     year: "2016",
+    photo: school12thPhoto,
+    photoAlt: "Jyoti with her 12th standard classmates and teacher at Kendriya Vidyalaya",
+    photoWide: true,
   },
   {
     step: "03",

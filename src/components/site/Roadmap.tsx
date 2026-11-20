@@ -153,7 +153,12 @@ function RoadmapCard({
           src={stop.photo}
           alt={"photoAlt" in stop ? stop.photoAlt : ""}
           loading="lazy"
-          className="absolute top-8 right-6 aspect-[3/4] w-20 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9 sm:w-28"
+          className={cn(
+            "absolute top-8 right-6 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9",
+            "photoWide" in stop && stop.photoWide
+              ? "aspect-[7/4] w-32 sm:w-48"
+              : "aspect-[3/4] w-20 sm:w-28",
+          )}
         />
       )}
 
@@ -168,7 +173,7 @@ function RoadmapCard({
       <div
         className={cn(
           (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
-            "pr-24 sm:pr-36",
+            ("photoWide" in stop && stop.photoWide ? "pr-36 sm:pr-56" : "pr-24 sm:pr-36"),
         )}
       >
         <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>

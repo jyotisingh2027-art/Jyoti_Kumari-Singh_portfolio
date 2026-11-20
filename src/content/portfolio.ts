@@ -145,6 +145,7 @@ import sihWinners from "@/assets/sih/winners.jpg";
 import sihPresentation from "@/assets/sih/presentation.jpg";
 import sihJudging from "@/assets/sih/judging.jpg";
 import sihNews from "@/assets/sih/news.jpg";
+import sihAward from "@/assets/sih/award.jpg";
 
 export type ProjectPhoto = { src: string; alt: string; caption: string };
 
@@ -211,6 +212,37 @@ export const projectGroups = [
         tags: ["Python", "HTML", "CSS", "Bootstrap", "PHP", "IoT"],
         award:
           "National Hackathon Winner — Smart India Hackathon — Hardware Edition (Ministry of Agriculture)",
+        awardDate: "Jul'19",
+        awardDetail:
+          "Smart India Hackathon project at CSIR – Central Scientific Instruments Organization, Chandigarh (team of 6).",
+        awardPhoto: {
+          src: sihAward,
+          alt: "Team Hack Six receiving the Smart India Hackathon 2019 first prize on stage at the Grand Finale",
+          caption: "Receiving the first prize at the SIH 2019 Grand Finale",
+        } as ProjectPhoto,
+        points: [
+          {
+            heading: "The product",
+            items: [
+              "Water Quality Monitoring (WAQM): a sensor-based system that monitors the quality of urban city wastewater to check whether it is fit for agricultural use.",
+              "A companion website gives a detailed view of water quality, compares readings with World Health Organization guidelines and suggests corrective solutions.",
+              "Multilingual support for English, Tamil and Hindi readers, so farmers and officials can use it in their own language.",
+            ],
+          },
+          {
+            heading: "My role",
+            items: [
+              "Handled planning, procurement of equipment, budgeting, presentation and documentation for the team.",
+              "Built the website using Python, HTML, CSS, Bootstrap and PHP.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            items: [
+              "Team Hack Six won first prize (₹1 lakh) at the Grand Finale of the hardware edition, competing with 2,000+ students from 178 engineering colleges.",
+            ],
+          },
+        ],
         gallery: [
           {
             src: sihWinners,

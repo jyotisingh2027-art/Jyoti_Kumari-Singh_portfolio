@@ -151,7 +151,7 @@ function RoadmapCard({
             style={{ backgroundImage: `url(${stop.cardBg})` }}
           />
           {/* light wash so the text stays readable over the photo */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-paper/75" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-r from-paper/85 via-paper/45 to-transparent" />
         </>
       )}
 

@@ -106,7 +106,7 @@ export function Contact() {
               placeholder="Type your message here"
               aria-label="Message"
             />
-            <Button type="submit" size="lg" disabled={sending} className="rounded-full bg-gold-foreground text-gold hover:bg-gold-foreground/90">
+            <Button type="submit" size="lg" disabled={sending} className="rounded-full bg-gold-foreground text-white hover:bg-gold-foreground/90">
               {sending ? "Sending..." : "Send message"}
             </Button>
           </form>

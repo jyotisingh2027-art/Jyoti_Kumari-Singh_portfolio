@@ -56,36 +56,30 @@ export function Contact() {
                 <dd className="mt-1 font-semibold">{profile.location}</dd>
               </div>
             </dl>
-            <ul className="mt-8 flex flex-wrap items-end gap-4">
-              {socials.map((social) => {
-                const Icon = social.label === "GitHub" ? GitHubIcon : LinkedInIcon;
-                return (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      title={social.label}
-                      className="grid size-14 place-items-center rounded-full border border-border transition-all hover:-translate-y-0.5 hover:bg-foreground hover:text-background"
-                    >
+            <ul className="mt-8 flex flex-wrap gap-6">
+              {[
+                ...socials.map((social) => ({
+                  label: social.label,
+                  href: social.href,
+                  Icon: social.label === "GitHub" ? GitHubIcon : LinkedInIcon,
+                })),
+                { label: "Resume", href: resumeUrl, Icon: ResumeIcon },
+              ].map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="group flex flex-col items-center gap-2"
+                  >
+                    <span className="grid size-14 place-items-center rounded-full border border-border transition-all group-hover:-translate-y-0.5 group-hover:bg-foreground group-hover:text-background">
                       <Icon className="size-6" />
-                    </a>
-                  </li>
-                );
-              })}
-              <li>
-                <a
-                  href={resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Resume (PDF)"
-                  title="Resume"
-                  className="block transition-transform hover:-translate-y-0.5"
-                >
-                  <ResumeIcon className="h-20 w-[70px]" />
-                </a>
-              </li>
+                    </span>
+                    <span className="text-xs font-semibold opacity-80">{label}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -132,29 +126,22 @@ function LinkedInIcon({ className }: IconProps) {
   );
 }
 
-/** Stacked sheets of paper with "RESUME" written on the front page. */
+/** Stacked sheets of paper (label "Resume" sits underneath). */
 function ResumeIcon({ className }: IconProps) {
   return (
-    <svg viewBox="0 0 56 64" fill="none" aria-hidden="true" className={className}>
-      <rect x="10" y="2" width="42" height="54" rx="5" fill="currentColor" opacity="0.35" />
-      <rect x="4" y="8" width="42" height="54" rx="5" fill="currentColor" />
-      <text
-        x="25"
-        y="24"
-        textAnchor="middle"
-        fontSize="9"
-        fontWeight="800"
-        letterSpacing="0.5"
-        fill="var(--background)"
-        fontFamily="Manrope, ui-sans-serif, system-ui, sans-serif"
-      >
-        RESUME
-      </text>
-      <g stroke="var(--background)" strokeWidth="2.4" strokeLinecap="round" opacity="0.55">
-        <path d="M12 33h26" />
-        <path d="M12 40h26" />
-        <path d="M12 47h18" />
-      </g>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M8 3h9a2 2 0 0 1 2 2v12" />
+      <rect x="5" y="6" width="11" height="15" rx="2" />
+      <path d="M8 11h5M8 14.5h5M8 18h3" />
     </svg>
   );
 }

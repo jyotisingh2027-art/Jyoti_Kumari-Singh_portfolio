@@ -214,7 +214,7 @@ export const projectGroups = [
           "National Hackathon Winner — Smart India Hackathon — Hardware Edition (Ministry of Agriculture)",
         awardDate: "Jul'19",
         awardDetail:
-          "Smart India Hackathon project at CSIR – Central Scientific Instruments Organization, Chandigarh (team of 6).",
+          "CSIR – Central Scientific Instruments Organization, Chandigarh",
         awardPhoto: {
           src: sihAward,
           alt: "Team Hack Six receiving the Smart India Hackathon 2019 first prize on stage at the Grand Finale",

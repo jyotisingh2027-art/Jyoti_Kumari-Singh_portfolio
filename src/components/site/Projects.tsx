@@ -1,4 +1,4 @@
-import { ArrowUpRight, Trophy } from "lucide-react";
+import { ArrowUpRight, MapPin, Trophy } from "lucide-react";
 
 import { projectGroups, type ProjectPhoto } from "@/content/portfolio";
 
@@ -81,8 +81,9 @@ export function Projects() {
                               </span>
                             </p>
                             {"awardDetail" in project && project.awardDetail && (
-                              <p className="mt-4 text-sm leading-relaxed sm:text-base">
-                                {String(project.awardDetail)}
+                              <p className="mt-4 flex items-start gap-3 text-sm leading-relaxed sm:text-base">
+                                <MapPin className="mt-0.5 size-5 shrink-0" />
+                                <span>{String(project.awardDetail)}</span>
                               </p>
                             )}
                           </div>

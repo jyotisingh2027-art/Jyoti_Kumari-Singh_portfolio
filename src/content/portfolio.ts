@@ -200,7 +200,7 @@ export const projectGroups = [
     ],
   },
   {
-    heading: "Graduation — Academic Project",
+    heading: "Graduation",
     projects: [
       {
         index: "01",

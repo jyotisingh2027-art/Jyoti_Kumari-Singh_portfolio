@@ -173,7 +173,8 @@ function RoadmapCard({
           alt={"photoAlt" in stop ? stop.photoAlt : ""}
           loading="lazy"
           className={cn(
-            "absolute top-8 right-6 z-10 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9",
+            "absolute top-8 z-10 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9",
+            "photoLeft" in stop && stop.photoLeft ? "left-6 -rotate-3 sm:left-9" : "right-6 rotate-3 sm:right-9",
             "photoWide" in stop && stop.photoWide
               ? "aspect-[7/4] w-32 sm:w-48"
               : "aspect-[3/4] w-20 sm:w-28",
@@ -202,7 +203,9 @@ function RoadmapCard({
         className={cn(
           "relative",
           (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
-            ("photoWide" in stop && stop.photoWide
+            ("photoLeft" in stop && stop.photoLeft
+              ? "pl-24 sm:pl-36"
+              : "photoWide" in stop && stop.photoWide
               ? "pr-36 sm:pr-56"
               : "photoPlaceholder" in stop && stop.photoPlaceholder
                 ? "pr-32 sm:pr-48"

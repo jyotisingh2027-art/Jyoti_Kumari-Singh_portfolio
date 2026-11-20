@@ -74,6 +74,7 @@ export const education = [
     location: "Chennai",
     year: "2016 – 2020",
     cardBg: kcgCampusBg,
+    photoLeft: true,
     logo: kcgLogo,
     logoAlt: "KCG College of Technology logo",
     photo: graduationPhoto,

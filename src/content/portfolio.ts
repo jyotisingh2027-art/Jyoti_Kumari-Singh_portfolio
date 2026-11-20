@@ -1,3 +1,4 @@
+import sihLogoBg from "@/assets/sih/logo-bg.png";
 import netfixlabLogo from "@/assets/netfixlab/logo.png";
 import nookLogo from "@/assets/nook/logo.png";
 import muLogoFull from "@/assets/mu-logo-full.png";
@@ -459,6 +460,7 @@ export const projectGroups = [
         award:
           "National Hackathon Winner — Smart India Hackathon — Hardware Edition (Ministry of Agriculture)",
         awardDate: "Jul'19",
+        sectionLogoBg: sihLogoBg,
         awardDetail:
           "CSIR – Central Scientific Instruments Organization, Chandigarh",
         awardPhoto: {

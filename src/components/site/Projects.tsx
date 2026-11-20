@@ -87,6 +87,13 @@ export function Projects() {
                   }[];
                   return (
                     <article key={project.index} className="relative py-10 md:px-4">
+                      {"sectionLogoBg" in project && project.sectionLogoBg && (
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -top-6 -bottom-6 left-1/2 w-screen -translate-x-1/2 bg-contain bg-center bg-no-repeat opacity-[0.12]"
+                          style={{ backgroundImage: `url(${String(project.sectionLogoBg)})` }}
+                        />
+                      )}
                       {"sectionBg" in project && project.sectionBg && (
                         <div
                           aria-hidden="true"

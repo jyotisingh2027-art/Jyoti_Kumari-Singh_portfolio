@@ -148,10 +148,21 @@ function RoadmapCard({
         className="absolute -top-3 left-1/2 size-7 -translate-x-1/2 rounded-full border-4 border-paper bg-gold shadow-lift"
       />
 
-      <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
-      <h3 className="display mt-2 text-3xl sm:text-4xl">{stop.stage}</h3>
-      <p className="mt-3 text-base font-bold">{stop.school}</p>
-      <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
+      {"photo" in stop && stop.photo && (
+        <img
+          src={stop.photo}
+          alt={"photoAlt" in stop ? stop.photoAlt : ""}
+          loading="lazy"
+          className="absolute top-8 right-6 aspect-[3/4] w-20 rotate-3 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9 sm:right-9 sm:w-28"
+        />
+      )}
+
+      <div className={cn("photo" in stop && stop.photo && "pr-24 sm:pr-36")}>
+        <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
+        <h3 className="display mt-2 text-3xl sm:text-4xl">{stop.stage}</h3>
+        <p className="mt-3 text-base font-bold">{stop.school}</p>
+        <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
+      </div>
 
       <div
         className={cn(

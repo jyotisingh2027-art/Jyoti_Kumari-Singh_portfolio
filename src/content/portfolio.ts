@@ -1,3 +1,4 @@
+import graduationPhoto from "@/assets/graduation.jpg";
 /**
  * All placeholder copy for the portfolio lives here.
  * Swap these values (and the hero media below) with real content later.
@@ -49,6 +50,8 @@ export const education = [
     score: "8.3 CGPA",
     location: "Chennai",
     year: "2016 – 2020",
+    photo: graduationPhoto,
+    photoAlt: "Jyoti at her Anna University graduation, holding her degree certificate",
   },
   {
     step: "04",

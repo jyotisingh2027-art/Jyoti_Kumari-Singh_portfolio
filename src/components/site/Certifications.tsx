@@ -15,9 +15,13 @@ export function Certifications() {
               key={cert.name}
               className="flex flex-col items-center rounded-2xl border border-paper-foreground/15 bg-white/60 p-5 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-lift"
             >
-              <div className="grid size-16 place-items-center overflow-hidden rounded-2xl bg-ink text-gold shadow-sm">
+              <div
+                className={`grid h-16 place-items-center overflow-hidden rounded-xl shadow-sm ${
+                  cert.logo ? "w-32 bg-white ring-1 ring-ink/10" : "w-16 bg-ink text-gold"
+                }`}
+              >
                 {cert.logo ? (
-                  <img src={cert.logo} alt={`${cert.provider} logo`} className="size-full bg-white object-contain p-2" />
+                  <img src={cert.logo} alt={`${cert.provider} logo`} className="size-full object-contain p-2" />
                 ) : (
                   <span
                     aria-label={cert.provider}

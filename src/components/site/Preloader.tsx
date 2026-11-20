@@ -11,8 +11,8 @@ export function Preloader() {
   const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    const t1 = window.setTimeout(() => setLeaving(true), 1200);
-    const t2 = window.setTimeout(() => setGone(true), 2100);
+    const t1 = window.setTimeout(() => setLeaving(true), 1900);
+    const t2 = window.setTimeout(() => setGone(true), 2800);
     return () => {
       window.clearTimeout(t1);
       window.clearTimeout(t2);
@@ -28,8 +28,8 @@ export function Preloader() {
         leaving ? "-translate-y-full" : ""
       }`}
     >
-      <p className="display animate-rise px-6 text-center text-4xl text-foreground opacity-20 sm:text-6xl">
-        {profile.brand}
+      <p className="display animate-rise px-6 text-center text-4xl text-foreground sm:text-6xl">
+        <span className="animate-flicker inline-block">{profile.brand}</span>
       </p>
     </div>
   );

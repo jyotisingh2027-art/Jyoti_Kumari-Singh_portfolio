@@ -17,17 +17,20 @@ const ICONS: Record<string, string[]> = {
   "AI Skills": iconsFor("ai"),
 };
 
-/** Small scattered "sticker" positions so icons look hand-placed rather than in a grid. */
-const SCATTER = [
-  "-rotate-6 translate-y-1",
-  "rotate-3 -translate-y-2",
-  "rotate-6 translate-y-2",
-  "-rotate-3 -translate-y-1",
-  "rotate-2 translate-y-3",
-  "-rotate-6 -translate-y-2",
-  "rotate-6 translate-y-1",
-  "-rotate-2 translate-y-2",
-];
+/** Hand-placed spots in each card's empty space, as [top %, left %, tilt °]. Used on large screens. */
+const SPOTS: Record<string, [number, number, number][]> = {
+  "Business Skills": [
+    [46, 10, -8], [44, 52, 6], [57, 30, -4], [60, 72, 8], [72, 8, 5], [76, 46, -6], [88, 74, 4],
+  ],
+  "Technical Skills": [
+    [11, 64, -6], [32, 86, 6], [42, 80, -5], [53, 60, 4], [53, 84, -6], [59, 88, 5],
+    [68, 58, -4], [68, 80, 7], [77, 42, -6], [77, 70, 5], [82, 82, -4],
+  ],
+  "AI Skills": [
+    [50, 82, 6], [58, 70, -5], [64, 86, 4], [73, 10, -6], [74, 38, 5], [72, 66, -4],
+    [83, 22, 6], [84, 52, -5], [84, 80, 5], [93, 8, -4], [93, 40, 6],
+  ],
+};
 
 export function Skills() {
   return (
@@ -96,16 +99,31 @@ export function Skills() {
               )}
 
               {ICONS[skill.title] && ICONS[skill.title].length > 1 && (
-                <div aria-hidden="true" className="mt-auto flex flex-wrap items-end justify-center gap-x-4 gap-y-3 pt-8">
-                  {ICONS[skill.title].slice(1).map((src, i) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt=""
-                      className={`size-10 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-125 sm:size-11 ${SCATTER[i % SCATTER.length]}`}
-                    />
-                  ))}
-                </div>
+                <>
+                  {/* Large screens: icons tucked into the gaps around the skills */}
+                  {ICONS[skill.title].slice(1).map((src, i) => {
+                    const spot = SPOTS[skill.title]?.[i];
+                    if (!spot) return null;
+                    const [top, left, tilt] = spot;
+                    return (
+                      <img
+                        key={src}
+                        src={src}
+                        alt=""
+                        aria-hidden="true"
+                        data-skill-icon
+                        style={{ top: `${top}%`, left: `${left}%`, transform: `rotate(${tilt}deg)` }}
+                        className="absolute hidden size-10 object-contain drop-shadow-sm transition-transform duration-300 hover:scale-125 lg:block"
+                      />
+                    );
+                  })}
+                  {/* Smaller screens: a simple row so nothing overlaps the text */}
+                  <div aria-hidden="true" className="mt-6 flex flex-wrap gap-3 lg:hidden">
+                    {ICONS[skill.title].slice(1).map((src) => (
+                      <img key={src} src={src} alt="" className="size-9 object-contain" />
+                    ))}
+                  </div>
+                </>
               )}
             </article>
           ))}

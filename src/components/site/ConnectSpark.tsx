@@ -12,16 +12,16 @@ import connectRight from "@/assets/connect-right.png";
 const H = 371;
 const LEFT_W = 485;
 const RIGHT_W = 355;
-const W = 1237; // ~30% of the width tall, so the gap scales with the card
+const W = 1450; // figures ~26% of the card width tall; the gap scales with the card
 const GAP = W - LEFT_W - RIGHT_W;
 // he steps back a little so his front leg clears the heading
-const LEFT_SHIFT = 50;
+const LEFT_SHIFT = 75;
 
 const BOLT_FROM = { x: 468 - LEFT_SHIFT, y: 155 };
 const BOLT_TO = { x: 498 + GAP, y: 157 };
 
 // "Let's Connect" fills the space from his front leg to her front shoe
-const TEXT_FROM = 335;
+const TEXT_FROM = 370 - LEFT_SHIFT;
 const TEXT_TO = 490 + GAP;
 
 const CYCLE = 1900; // ms

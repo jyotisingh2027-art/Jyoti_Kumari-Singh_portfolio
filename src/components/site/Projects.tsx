@@ -8,7 +8,7 @@ export function Projects() {
 
   return (
     <>
-    <section id="projects" className="surface-ink overflow-x-clip py-28">
+    <section id="projects" className="surface-ink overflow-x-clip pt-28 pb-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

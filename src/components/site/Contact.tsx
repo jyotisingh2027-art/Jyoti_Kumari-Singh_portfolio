@@ -23,22 +23,22 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="surface-ink relative overflow-hidden pt-24 pb-16">
+    <section id="contact" className="surface-ink relative overflow-hidden pt-6 pb-10">
 
-      <div className="relative mx-auto mt-4 max-w-6xl px-6">
+      <div className="relative mx-auto max-w-6xl px-6">
         <ConnectSpark>
-          <h2 className="display whitespace-nowrap text-center text-[8.6cqw] leading-none">
+          <h2 className="display whitespace-nowrap text-center text-[7.4cqw] leading-none">
             Let's Connect
           </h2>
         </ConnectSpark>
-        <div className="relative z-10 grid gap-10 rounded-3xl bg-card p-8 shadow-lift sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <div className="relative z-10 grid gap-8 rounded-3xl bg-card p-6 shadow-lift sm:p-8 lg:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div>
             <p className="eyebrow opacity-70">Reach me</p>
-            <h3 className="display mt-4 text-4xl">Contact</h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="display mt-2 text-3xl">Contact</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               Looking to collaborate, build, or simply connect? I’m all ears
             </p>
-            <dl className="mt-8 space-y-4 text-sm">
+            <dl className="mt-5 space-y-3 text-sm">
               <div>
                 <dt className="eyebrow opacity-60">Email</dt>
                 <dd className="mt-1 flex items-center gap-2 font-semibold">
@@ -65,7 +65,7 @@ export function Contact() {
                 </dd>
               </div>
             </dl>
-            <ul className="mt-8 flex flex-wrap gap-6">
+            <ul className="mt-5 flex flex-wrap gap-6">
               {[
                 ...socials.map((social) => ({
                   label: social.label,
@@ -82,7 +82,7 @@ export function Contact() {
                     aria-label={label}
                     className="group flex flex-col items-center gap-2"
                   >
-                    <span className="grid size-14 place-items-center rounded-full border border-border transition-all group-hover:-translate-y-0.5 group-hover:bg-foreground group-hover:text-background">
+                    <span className="grid size-12 place-items-center rounded-full border border-border transition-all group-hover:-translate-y-0.5 group-hover:bg-foreground group-hover:text-background">
                       <Icon className="size-6" />
                     </span>
                     <span className="text-xs font-semibold opacity-80">{label}</span>
@@ -92,8 +92,8 @@ export function Contact() {
             </ul>
           </div>
 
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <form onSubmit={onSubmit} className="grid gap-3">
+            <div className="grid gap-3 sm:grid-cols-2">
               <Input required name="firstName" placeholder="First name" aria-label="First name" />
               <Input required name="lastName" placeholder="Last name" aria-label="Last name" />
             </div>
@@ -102,7 +102,7 @@ export function Contact() {
             <Textarea
               required
               name="message"
-              rows={6}
+              rows={4}
               placeholder="Type your message here"
               aria-label="Message"
             />

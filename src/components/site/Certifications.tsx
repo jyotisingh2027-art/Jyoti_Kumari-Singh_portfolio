@@ -5,7 +5,7 @@ export function Certifications() {
   return (
     <section id="certifications" className="surface-paper py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex items-end justify-between gap-6">
+        <div className="flex items-end gap-4 sm:gap-6">
           <div>
             <p className="eyebrow opacity-60">Credentials</p>
             <h2 className="display mt-3 text-4xl sm:text-6xl">

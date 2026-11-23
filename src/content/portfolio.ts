@@ -239,7 +239,7 @@ import nflAbout from "@/assets/netfixlab/about.jpg";
 import nflPricing from "@/assets/netfixlab/pricing.jpg";
 import nflVideoLesson from "@/assets/netfixlab/video-lesson.jpg";
 
-export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTop?: boolean };
+export type ProjectPhoto = { src: string; alt: string; caption: string; anchorTop?: boolean; hideCaption?: boolean };
 
 export const projectGroups = [
   {
@@ -367,6 +367,7 @@ export const projectGroups = [
           src: nookHero,
           alt: "Nook winter wallpaper: a snowy lamplit village lane at dusk",
           caption: "Nook — Lamplit Lane wallpaper",
+          hideCaption: true,
         } as ProjectPhoto,
         points: [
           {

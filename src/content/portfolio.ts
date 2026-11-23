@@ -430,6 +430,8 @@ export const projectGroups = [
       {
         index: "04",
         title: "Corporate Chaos",
+        sectionBg: "#f1e6b2", // Pantone 7499 C "Wall Cream"
+        sectionLight: true,
         category: "AI Game",
         year: "2026",
         blurb:

@@ -445,6 +445,7 @@ export const projectGroups = [
           src: chaosLanding,
           alt: "Corporate Chaos landing page: 'Survive the corporate jungle' with an Employee of the Month card",
           caption: "Landing — “Survive the corporate jungle.”",
+          hideCaption: true,
         } as ProjectPhoto,
         gallery: [
           { src: chaosOnboarding, alt: "Employee onboarding screen to create a corporate badge ID", caption: "Onboarding — build your badge" },

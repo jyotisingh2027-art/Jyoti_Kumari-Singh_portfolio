@@ -248,7 +248,9 @@ export function Projects() {
                               className="w-full transition-transform duration-500 group-hover/photo:scale-[1.03]"
                             />
                           </div>
-                          <p className="mt-2 text-xs leading-snug opacity-70">{awardPhoto.caption}</p>
+                          {!("hideCaption" in awardPhoto && awardPhoto.hideCaption) && (
+                            <p className="mt-2 text-xs leading-snug opacity-70">{awardPhoto.caption}</p>
+                          )}
                         </button>
                         )}
                       </div>

@@ -199,24 +199,24 @@ export function Projects() {
                                   href={project.link}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5"
+                                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5"
                                 >
                                   {"linkLabel" in project ? project.linkLabel : "Open"} <ArrowUpRight className="size-4" />
                                 </a>
                               )}
                               {"channels" in project && project.channels && (
-                                <div className="mt-8">
+                                <div className="mt-6">
                                   <p className="eyebrow opacity-70">Distribution channels</p>
-                                  <ul className="mt-3 flex flex-wrap gap-2">
+                                  <ul className="mt-2 flex flex-wrap gap-1.5 sm:flex-nowrap">
                                     {(project.channels as { label: string; href: string }[]).map((ch) => (
                                       <li key={ch.label}>
                                         <a
                                           href={ch.href}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1.5 rounded-full border border-sidebar-border px-4 py-2 text-sm font-semibold transition-colors hover:bg-foreground hover:text-background"
+                                          className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-sidebar-border px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-foreground hover:text-background"
                                         >
-                                          {ch.label} <ArrowUpRight className="size-3.5" />
+                                          {ch.label} <ArrowUpRight className="size-3" />
                                         </a>
                                       </li>
                                     ))}

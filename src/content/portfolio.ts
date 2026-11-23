@@ -414,9 +414,9 @@ export const projectGroups = [
         highlightTags: ["Sector Research", "Automation", "HR Tech"],
         tags: ["Make.com", "Google Sheets", "Slack", "Market Mapping", "People Analytics", "Workforce Intelligence"],
         link: "https://us2.make.com/public/shared-scenario/BYdmxZAJDTf/early-burnout-detection-weekly-signal",
-        linkLabel: "View the Make.com workflow",
+        linkLabel: "Make.com workflow",
         secondaryLink: sectorMapAsset,
-        secondaryLinkLabel: "View the sector map deck",
+        secondaryLinkLabel: "Sector map deck",
         awardPhoto: {
           src: hrCover,
           alt: "Sector map cover: HR has evolved from managing records to managing workforce intelligence",

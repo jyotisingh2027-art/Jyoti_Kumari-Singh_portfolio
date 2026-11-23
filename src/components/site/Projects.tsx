@@ -212,7 +212,7 @@ export function Projects() {
                                   href={String(project.secondaryLink)}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-sidebar-border px-6 py-3 text-sm font-bold transition-transform hover:-translate-y-0.5"
+                                  className="mt-6 ml-2 inline-flex items-center gap-2 rounded-full border border-sidebar-border px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-0.5"
                                 >
                                   {"secondaryLinkLabel" in project ? String(project.secondaryLinkLabel) : "Open"} <ArrowUpRight className="size-4" />
                                 </a>

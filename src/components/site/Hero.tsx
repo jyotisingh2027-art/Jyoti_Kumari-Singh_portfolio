@@ -29,7 +29,7 @@ export function Hero() {
           alt={`Portrait of ${profile.brand}`}
           width={1023}
           height={1060}
-          className="size-full scale-[1.03] object-cover object-center blur-[2px]"
+          className="size-full object-cover object-center"
         />
         {/* Light purple tint so the photo sits in the page's colour scheme without hiding the greenery */}
         <div className="absolute inset-0 bg-[var(--hero)]/45 lg:bg-[var(--hero)]/25" />

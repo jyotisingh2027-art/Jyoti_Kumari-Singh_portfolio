@@ -31,7 +31,7 @@ export const profile = {
   role: "meaningful solutions",
   greeting: "I turn technology, ideas and business problems into",
   tagline:
-    "I work at the intersection of technology and business to solve complex problems and build the bridge to possibility.",
+    "A 0 → 1 builder at the intersection of technology and business. I take ideas from a blank page to a working product, solving complex problems and building the bridge to possibility.",
   location: "Gurugram, India",
   email: "jyoti.singh2027@mastersunion.org",
   phone: "+91-7010448420",

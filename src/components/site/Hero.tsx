@@ -1,5 +1,5 @@
 import type React from "react";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, Rocket } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import heroPortraitAsset from "@/assets/jyoti-hero.png";
@@ -36,6 +36,10 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-28">
+        <p className="mb-5 inline-flex w-fit animate-rise items-center gap-2 rounded-full bg-gold px-4 py-1.5 text-sm font-bold text-gold-foreground shadow-lift">
+          <Rocket className="size-4" />
+          0 → 1 Builder
+        </p>
         <p className="eyebrow animate-rise opacity-80">
           {profile.availability.split("×").map((part, i) => (
             <span key={i}>

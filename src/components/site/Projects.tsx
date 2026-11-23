@@ -179,6 +179,9 @@ export function Projects() {
                               ) : (
                                 <h4 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">{project.title}</h4>
                               )}
+                              {"subtitle" in project && project.subtitle && (
+                                <p className="display mt-2 text-xl text-gold sm:text-2xl">{String(project.subtitle)}</p>
+                              )}
                               {"tagline" in project && project.tagline && (
                                 <p className="mt-4 text-base leading-relaxed opacity-80 sm:text-lg">
                                   {String(project.tagline)}
@@ -202,6 +205,16 @@ export function Projects() {
                                   className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5"
                                 >
                                   {"linkLabel" in project ? project.linkLabel : "Open"} <ArrowUpRight className="size-4" />
+                                </a>
+                              )}
+                              {"secondaryLink" in project && project.secondaryLink && (
+                                <a
+                                  href={String(project.secondaryLink)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-sidebar-border px-6 py-3 text-sm font-bold transition-transform hover:-translate-y-0.5"
+                                >
+                                  {"secondaryLinkLabel" in project ? String(project.secondaryLinkLabel) : "Open"} <ArrowUpRight className="size-4" />
                                 </a>
                               )}
                               {"channels" in project && project.channels && (

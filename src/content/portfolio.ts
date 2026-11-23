@@ -220,6 +220,11 @@ export const certifications: {
 ];
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";
+import hrCover from "@/assets/hrtech/cover.webp";
+import hrEvolution from "@/assets/hrtech/evolution.webp";
+import hrIntelligence from "@/assets/hrtech/record-to-intelligence.webp";
+import hrLandscape from "@/assets/hrtech/landscape.webp";
+import hrFuture from "@/assets/hrtech/future.webp";
 import sihWinners from "@/assets/sih/winners.jpg";
 import sihProduct from "@/assets/sih/product.jpg";
 import sihJury from "@/assets/sih/jury.jpg";
@@ -398,36 +403,55 @@ export const projectGroups = [
       },
       {
         index: "01",
-        title: "HR Tech & Staffing — Sector Map",
-        category: "Sector Research",
+        title: "HR Tech & Staffing",
+        subtitle: "Early Burnout Detection — Workflow",
+        category: "Sector Research · Automation",
         year: "2026",
+        tagline:
+          "A sector map of how HR moved from managing records to managing workforce intelligence, and a working automation that turns one of its ideas, early burnout signals, into a weekly alert.",
         blurb:
-          "A sector map of the HR Tech & Staffing landscape, mapping key segments, players and opportunities.",
-        tags: ["HR Tech", "Staffing", "Sector Map"],
-        link: sectorMapAsset,
-        linkLabel: "View Sector Map",
-      },
-      {
-        index: "02",
-        title: "HR Tech & Staffing — Workflow",
-        category: "Automation",
-        year: "2026",
-        blurb:
-          "A workflow built on the HR Tech & Staffing theme: early burnout detection with weekly signals, automated on Make.com.",
-        tags: ["Make.com", "Automation", "HR Tech"],
+          "HR Tech & Staffing sector map plus an early burnout detection workflow on Make.com.",
+        highlightTags: ["Sector Research", "Automation", "HR Tech"],
+        tags: ["Make.com", "Google Sheets", "Slack", "Market Mapping", "People Analytics", "Workforce Intelligence"],
         link: "https://us2.make.com/public/shared-scenario/BYdmxZAJDTf/early-burnout-detection-weekly-signal",
-        linkLabel: "View Workflow",
-      },
-      {
-        index: "03",
-        title: "Early Burnout Detection — Weekly Signal",
-        category: "Automation",
-        year: "2026",
-        blurb:
-          "An HR Tech & Staffing workflow that surfaces early burnout signals on a weekly cadence, built and shared via Make.com.",
-        tags: ["Make.com", "HR Tech", "Workflow"],
-        link: "https://us2.make.com/public/shared-scenario/BYdmxZAJDTf/early-burnout-detection-weekly-signal",
-        linkLabel: "View Workflow",
+        linkLabel: "View the Make.com workflow",
+        secondaryLink: sectorMapAsset,
+        secondaryLinkLabel: "View the sector map deck",
+        awardPhoto: {
+          src: hrCover,
+          alt: "Sector map cover: HR has evolved from managing records to managing workforce intelligence",
+          caption: "HR Tech & Staffing sector map",
+          hideCaption: true,
+        } as ProjectPhoto,
+        points: [
+          {
+            heading: "The sector map",
+            items: [
+              "Traced HR's shift **from paper files to AI-powered workforce intelligence** across six technology waves: Paper → Digital → Data → Intelligence.",
+              "Market thesis: value is moving from systems of record (HRIS, payroll) to **systems of intelligence** that predict and act; global HR Tech is estimated to grow from $47.3B (2026) to $95.95B by 2034.",
+            ],
+          },
+          {
+            heading: "The landscape",
+            items: [
+              "Grouped players into **five value layers**, from core HR (Darwinbox, Keka, Workday) to talent intelligence (Visier, Eightfold AI) and workforce signals.",
+              "Mapped how AI automates, augments and redefines six HR roles, and the new ones emerging, such as the **AI HR Product Manager**.",
+            ],
+          },
+          {
+            heading: "The workflow",
+            items: [
+              "Built **Early Burnout Detection — Weekly Signal** on Make.com, putting the report's predictive people-analytics idea into practice.",
+              "Each week it reads workforce signals from **Google Sheets** and flags early burnout risk to managers in **Slack**, so they can step in before an employee burns out.",
+            ],
+          },
+        ],
+        gallery: [
+          { src: hrEvolution, alt: "Timeline from manual personnel administration to generative AI in HR", caption: "From paper files to digital talent ecosystems" },
+          { src: hrIntelligence, alt: "Comparison of systems of record and systems of intelligence", caption: "Systems of record → systems of intelligence" },
+          { src: hrLandscape, alt: "HR Tech competitive landscape split into five value layers", caption: "Competitive landscape in five layers" },
+          { src: hrFuture, alt: "Workforce signals feeding data, prediction and AI for capability fulfilment", caption: "Workforce signals → early warning" },
+        ] as ProjectPhoto[],
       },
       {
         index: "04",

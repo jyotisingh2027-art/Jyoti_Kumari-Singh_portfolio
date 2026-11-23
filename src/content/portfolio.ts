@@ -354,6 +354,7 @@ export const projectGroups = [
       {
         index: "00b",
         title: "HealVoy",
+        sectionBg: "#0f3934", // deep healthcare teal, matches the HealVoy deck
         category: "Market Research · Medical Tourism in India",
         year: "2026",
         tagline:

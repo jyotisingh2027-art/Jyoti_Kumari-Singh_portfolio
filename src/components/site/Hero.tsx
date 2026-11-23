@@ -57,7 +57,15 @@ export function Hero() {
           </span>
         </h1>
         <p className="mt-8 max-w-xl animate-rise text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {profile.tagline}
+          {profile.tagline.split("**").map((part, i) =>
+            i % 2 ? (
+              <strong key={i} className="font-semibold text-gold">
+                {part}
+              </strong>
+            ) : (
+              part
+            ),
+          )}
         </p>
 
         <div className="mt-10 flex animate-rise flex-wrap items-center gap-3">

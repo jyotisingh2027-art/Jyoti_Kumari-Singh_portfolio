@@ -24,7 +24,7 @@ function useScrollProgress<T extends HTMLElement>() {
         const rect = el.getBoundingClientRect();
         const vh = window.innerHeight;
         const start = vh * 0.95; // element enters at bottom edge
-        const end = vh * 0.55; // fully "drawn" once it reaches mid-screen
+        const end = vh * 0.8; // fully "drawn" once it is comfortably on screen
         const p = (start - rect.top) / (start - end);
         setProgress(Math.min(1, Math.max(0, p)));
       });
@@ -43,79 +43,80 @@ function useScrollProgress<T extends HTMLElement>() {
   return { ref, progress };
 }
 
-type Segment = { x1: number; y1: number; x2: number; y2: number };
-
 /**
- * SVG overlay that measures the real card positions and draws a dashed line
- * from each card's bottom edge all the way to the next card's top pin dot.
+ * One continuous road across the section. It winds gently between the stops,
+ * and each stop gets a numbered marker on the tarmac. Signboard cards stand on
+ * posts beside the road (above it and below it, alternately).
  */
-function ConnectorLayer({
-  listRef,
+function RoadLayer({
+  wrapRef,
   itemRefs,
-  progresses,
+  laneRef,
 }: {
-  listRef: React.RefObject<HTMLOListElement | null>;
+  wrapRef: React.RefObject<HTMLDivElement | null>;
   itemRefs: React.RefObject<(HTMLLIElement | null)[]>;
-  progresses: number[];
+  laneRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const [segments, setSegments] = useState<Segment[]>([]);
+  const [geo, setGeo] = useState<{ w: number; y: number; xs: number[] } | null>(null);
 
   useEffect(() => {
     const measure = () => {
-      const list = listRef.current;
+      const wrap = wrapRef.current;
       const items = itemRefs.current;
-      if (!list || !items) return;
-
-      const listRect = list.getBoundingClientRect();
-      const next: Segment[] = [];
-
-      for (let i = 0; i < items.length - 1; i++) {
-        const from = items[i];
-        const to = items[i + 1];
-        if (!from || !to) continue;
-        const a = from.getBoundingClientRect();
-        const b = to.getBoundingClientRect();
-        next.push({
-          x1: a.left - listRect.left + a.width / 2,
-          y1: a.bottom - listRect.top,
-          x2: b.left - listRect.left + b.width / 2,
-          y2: b.top - listRect.top,
-        });
-      }
-      setSegments(next);
+      if (!wrap || !items) return;
+      const box = wrap.getBoundingClientRect();
+      const xs = items.map((li) => {
+        const r = li?.getBoundingClientRect();
+        return r ? r.left - box.left + r.width / 2 : 0;
+      });
+      const lane = laneRef.current?.getBoundingClientRect();
+      const y = lane ? lane.top - box.top + lane.height / 2 : box.height / 2;
+      setGeo({ w: box.width, y, xs });
     };
-
     measure();
     window.addEventListener("resize", measure);
-    // re-measure after fonts/layout settle
     const t = window.setTimeout(measure, 400);
     return () => {
       window.removeEventListener("resize", measure);
       window.clearTimeout(t);
     };
-  }, [listRef, itemRefs]);
+  }, [wrapRef, itemRefs, laneRef]);
+
+  if (!geo) return null;
+  const { w, y, xs } = geo;
+  const sway = 22; // how far the road bends between stops
+  // start off-screen on the left, pass through every stop, run off to the right
+  const pts = [-1600, ...xs, w + 1600];
+  let d = `M ${pts[0]} ${y}`;
+  for (let i = 1; i < pts.length; i++) {
+    const x0 = pts[i - 1];
+    const x1 = pts[i];
+    const dir = i % 2 ? -1 : 1;
+    const span = x1 - x0;
+    d += ` C ${x0 + span * 0.35} ${y + dir * sway}, ${x1 - span * 0.35} ${y + dir * sway}, ${x1} ${y}`;
+  }
 
   return (
-    <svg aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full">
-      {segments.map((s, i) => {
-        const midY = (s.y1 + s.y2) / 2;
-        const d = `M ${s.x1} ${s.y1} C ${s.x1} ${midY}, ${s.x2} ${midY}, ${s.x2} ${s.y2}`;
-        // segment i draws itself as the next card (i + 1) scrolls into view
-        const progress = progresses[i + 1] ?? 0;
-        return (
-          <path
-            key={i}
-            d={d}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={3}
-            strokeLinecap="round"
-            pathLength={1}
-            className="text-ink opacity-50"
-            style={{ strokeDasharray: "0.04 0.06", strokeDashoffset: 1 - progress }}
-          />
-        );
-      })}
+    <svg aria-hidden="true" className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible lg:block">
+      <path d={d} fill="none" stroke="#e9e4d8" strokeWidth={56} />
+      <path d={d} fill="none" stroke="#3b3942" strokeWidth={48} />
+      <path d={d} fill="none" stroke="#ffd84d" strokeWidth={3} strokeDasharray="16 14" />
+      {xs.map((x, i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r={17} fill="#ffd84d" stroke="#fdfaf2" strokeWidth={4} />
+          <text
+            x={x}
+            y={y + 5}
+            textAnchor="middle"
+            fontSize={14}
+            fontWeight={800}
+            fill="#1c1626"
+            fontFamily="Manrope, sans-serif"
+          >
+            {i + 1}
+          </text>
+        </g>
+      ))}
     </svg>
   );
 }
@@ -134,10 +135,10 @@ function RoadmapCard({
       ref={ref}
       style={{
         opacity: 0.15 + progress * 0.85,
-        transform: `translateY(${(1 - progress) * 40}px) rotate(${right ? 2 : -2}deg)`,
+        transform: `translateY(${(1 - progress) * 24}px)`,
       }}
       className={cn(
-        "relative rounded-[2rem] p-7 pt-9 shadow-lift transition-transform duration-300 hover:-translate-y-2 sm:p-9 sm:pt-10",
+        "relative rounded-3xl p-4 pt-6 shadow-lift transition-transform duration-300 hover:-translate-y-2",
         right
           ? "bg-card text-card-foreground"
           : "border-2 border-ink/15 bg-paper text-paper-foreground",
@@ -147,7 +148,7 @@ function RoadmapCard({
         <>
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem] bg-cover bg-center"
+            className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl bg-cover bg-center"
             style={{
               backgroundImage: `url(${stop.cardBg})`,
               ...("cardBgSoft" in stop && stop.cardBgSoft
@@ -159,7 +160,7 @@ function RoadmapCard({
           <div
             aria-hidden="true"
             className={cn(
-              "pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-r to-transparent",
+              "pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r to-transparent",
               "cardBgNatural" in stop && stop.cardBgNatural
                 ? "from-black/55 via-black/20"
                 : right
@@ -170,11 +171,6 @@ function RoadmapCard({
         </>
       )}
 
-      {/* pin dot */}
-      <span
-        aria-hidden="true"
-        className="absolute -top-3 left-1/2 size-7 -translate-x-1/2 rounded-full border-4 border-paper bg-gold shadow-lift"
-      />
 
       {"photo" in stop && stop.photo && (
         <img
@@ -182,11 +178,8 @@ function RoadmapCard({
           alt={"photoAlt" in stop ? stop.photoAlt : ""}
           loading="lazy"
           className={cn(
-            "absolute top-8 z-10 rounded-xl border-4 border-white object-cover shadow-lift sm:top-9",
-            "photoLeft" in stop && stop.photoLeft ? "left-6 -rotate-3 sm:left-9" : "right-6 rotate-3 sm:right-9",
-            "photoWide" in stop && stop.photoWide
-              ? "aspect-[7/4] w-32 sm:w-48"
-              : "aspect-[3/4] w-20 sm:w-28",
+            "absolute -top-5 -right-3 z-10 rotate-6 rounded-lg border-[3px] border-white object-cover shadow-lift",
+            "photoWide" in stop && stop.photoWide ? "aspect-[7/4] w-24" : "aspect-[3/4] w-14",
           )}
         />
       )}
@@ -211,33 +204,26 @@ function RoadmapCard({
       <div
         className={cn(
           "relative",
-          (("photo" in stop && stop.photo) || ("photoPlaceholder" in stop && stop.photoPlaceholder)) &&
-            ("photoLeft" in stop && stop.photoLeft
-              ? "pl-24 sm:pl-36"
-              : "photoWide" in stop && stop.photoWide
-              ? "pr-36 sm:pr-56"
-              : "photoPlaceholder" in stop && stop.photoPlaceholder
-                ? "pr-32 sm:pr-48"
-                : "pr-24 sm:pr-36"),
+          "photo" in stop && stop.photo && ("photoWide" in stop && stop.photoWide ? "[&>h3]:pr-16" : "[&>h3]:pr-10"),
         )}
       >
-        <p className={cn("display text-lg", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
+        <p className={cn("display text-base", right ? "text-gold" : "opacity-40")}>{stop.step}</p>
         <h3
           className={cn(
-            "display mt-2",
-            stop.stage.length > 30 ? "text-2xl leading-tight" : "text-3xl sm:text-4xl",
+            "display mt-1 leading-tight",
+            stop.stage.length > 30 ? "text-base" : "text-xl",
           )}
         >
           {stop.stage}
         </h3>
         {"logoFull" in stop && stop.logoFull ? (
-          <p className="mt-4">
-            <span className="inline-flex items-center rounded-xl bg-black px-4 py-2 shadow-lift">
-              <img src={stop.logoFull} alt={stop.school} className="h-10 w-auto object-contain sm:h-12" />
+          <p className="mt-3">
+            <span className="inline-flex items-center rounded-lg bg-black px-2.5 py-1.5 shadow-lift">
+              <img src={stop.logoFull} alt={stop.school} className="h-6 w-auto object-contain" />
             </span>
           </p>
         ) : (
-        <p className="mt-3 flex items-center gap-3 text-base font-bold">
+        <p className="mt-2 flex items-center gap-2 text-xs leading-snug font-bold">
             {"logo" in stop && stop.logo && (
               <img
                 src={stop.logo}
@@ -245,8 +231,8 @@ function RoadmapCard({
                 className={cn(
                   "shrink-0 object-contain shadow-sm",
                   "logoDark" in stop && stop.logoDark
-                    ? "size-10 rounded-full bg-black ring-1 ring-white/20"
-                    : "size-10 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
+                    ? "size-7 rounded-full bg-black ring-1 ring-white/20"
+                    : "size-7 rounded-full bg-white p-0.5 ring-1 ring-ink/10",
                 )}
               />
             )}
@@ -254,24 +240,24 @@ function RoadmapCard({
           </p>
         )}
         {"award" in stop && stop.award && (
-          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-gold-foreground shadow-lift">
-            <Award className="size-4 shrink-0" />
+          <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-gold px-2.5 py-1 text-[11px] leading-tight font-bold text-gold-foreground shadow-lift">
+            <Award className="size-3.5 shrink-0" />
             {String(stop.award)}
           </p>
         )}
         {stop.score && (
-          <p className={cn("mt-1 text-sm", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
+          <p className={cn("mt-1 text-xs", right ? "text-gold" : "opacity-70")}>{stop.score}</p>
         )}
       </div>
 
       <div
         className={cn(
-          "relative mt-5 flex items-center justify-between border-t pt-4 text-xs font-semibold tracking-widest uppercase opacity-70",
+          "relative mt-3 flex flex-wrap items-center justify-between gap-x-2 gap-y-1 border-t pt-2 text-[10px] font-semibold tracking-wider whitespace-nowrap uppercase opacity-70",
           right ? "border-sidebar-border" : "border-ink/15",
         )}
       >
         <span className="inline-flex items-center gap-1.5">
-          <MapPin className="size-3.5" />
+          <MapPin className="size-3" />
           {stop.location}
         </span>
         <span>{stop.year}</span>
@@ -281,44 +267,13 @@ function RoadmapCard({
 }
 
 export function Roadmap() {
-  const listRef = useRef<HTMLOListElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const [progresses, setProgresses] = useState<number[]>(() => education.map(() => 0));
-
-  // Track how far each card has scrolled into view; segment i draws as card i+1 appears.
-  useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const vh = window.innerHeight;
-        const start = vh * 0.95;
-        const end = vh * 0.55;
-        setProgresses(
-          education.map((_, i) => {
-            const el = itemRefs.current?.[i];
-            if (!el) return 0;
-            const rect = el.getBoundingClientRect();
-            const p = (start - rect.top) / (start - end);
-            return Math.min(1, Math.max(0, p));
-          }),
-        );
-      });
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  const laneRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="journey" className="surface-paper relative overflow-hidden py-28">
-      {/* Classroom sketch behind the whole section; stays put while the roadmap scrolls over it */}
+    <section id="journey" className="surface-paper relative scroll-mt-16 overflow-hidden py-10">
+      {/* Classroom sketch behind the whole section */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-cover bg-center md:bg-fixed"
@@ -327,33 +282,48 @@ export function Roadmap() {
       {/* Soft paper wash so the headline and cards stay easy to read */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-paper/70" />
       <div className="relative mx-auto max-w-7xl px-6">
-        <p className="eyebrow opacity-60">How I got here</p>
-        <h2 className="display mt-4 max-w-4xl text-5xl sm:text-7xl">
-          THE ROADMAP THAT <span className="text-outline-ink">BROUGHT ME HERE</span>
-        </h2>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-70">
-          A journey from school classrooms to engineering, consulting and business — each stop
-          shaped how I solve problems today.
-        </p>
+        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-2">
+          <div>
+            <p className="eyebrow opacity-60">How I got here</p>
+            <h2 className="display mt-2 text-4xl sm:text-5xl">
+              THE ROADMAP THAT <span className="text-outline-ink">BROUGHT ME HERE</span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed opacity-70">
+            From school classrooms to engineering, consulting and business: each stop shaped how I
+            solve problems today.
+          </p>
+        </div>
 
-        <ol ref={listRef} className="relative mt-20">
-          <ConnectorLayer listRef={listRef} itemRefs={itemRefs} progresses={progresses} />
-          {education.map((stop, i) => {
-            const right = i % 2 === 1;
-            const last = i === education.length - 1;
-            return (
-              <li
-                key={stop.step}
-                ref={(el) => {
-                  itemRefs.current[i] = el;
-                }}
-                className={cn("relative md:w-[44%]", right && "md:ml-auto", !last && "mb-14 md:mb-24")}
-              >
-                <RoadmapCard stop={stop} right={right} />
-              </li>
-            );
-          })}
-        </ol>
+        <div ref={wrapRef} className="relative mt-6">
+          <ol className="relative grid gap-y-10 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:grid-rows-[auto_56px_auto] lg:gap-x-8 lg:gap-y-0">
+            {education.map((stop, i) => {
+              const below = i % 2 === 1; // alternate sides of the road
+              const posts = (
+                <div aria-hidden="true" className="hidden min-h-7 flex-1 justify-center gap-24 lg:flex">
+                  <span className="w-2 rounded-sm bg-[#57535f] shadow-sm" />
+                  <span className="w-2 rounded-sm bg-[#57535f] shadow-sm" />
+                </div>
+              );
+              return (
+                <li
+                  key={stop.step}
+                  ref={(el) => {
+                    itemRefs.current[i] = el;
+                  }}
+                  style={{ gridColumn: i + 1, gridRow: below ? 3 : 1 }}
+                  className="relative lg:flex lg:flex-col max-lg:![grid-column:auto] max-lg:![grid-row:auto]"
+                >
+                  {below && posts}
+                  <RoadmapCard stop={stop} right={below} />
+                  {!below && posts}
+                </li>
+              );
+            })}
+            <div ref={laneRef} aria-hidden="true" className="hidden lg:block" style={{ gridColumn: "1 / -1", gridRow: 2 }} />
+          </ol>
+          <RoadLayer wrapRef={wrapRef} itemRefs={itemRefs} laneRef={laneRef} />
+        </div>
       </div>
     </section>
   );

@@ -24,10 +24,10 @@ function App() {
         <IntroReel />
         <Hero />
         <About />
-        <Roadmap />
         <Skills />
         <Certifications />
         <Projects />
+        <Roadmap />
         <Contact />
       </main>
       <SiteFooter />

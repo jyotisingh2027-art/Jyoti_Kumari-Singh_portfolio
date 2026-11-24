@@ -399,7 +399,6 @@ export function Projects() {
                 return (
                   <Fragment key={project.index}>
                     {node}
-                    <CodeMarquee seed={pIdx + group.heading.length} />
                   </Fragment>
                 );
               })}

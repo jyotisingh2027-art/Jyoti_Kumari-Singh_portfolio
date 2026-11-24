@@ -289,10 +289,6 @@ export function Roadmap() {
               THE ROADMAP THAT <span className="text-outline-ink">BROUGHT ME HERE</span>
             </h2>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed opacity-70">
-            From school classrooms to engineering, consulting and business: each stop shaped how I
-            solve problems today.
-          </p>
         </div>
 
         <div ref={wrapRef} className="relative mt-6">

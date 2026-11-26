@@ -308,6 +308,23 @@ export function Projects() {
                         ))}
                       </ul>
 
+                      {/* Full, uncropped images (e.g. a product brief) */}
+                      {"fullPhotos" in project && project.fullPhotos && (
+                        <div className="mt-10 space-y-4">
+                          {(project.fullPhotos as ProjectPhoto[]).map((photo) => (
+                            <button
+                              key={photo.src}
+                              type="button"
+                              onClick={() => setLightbox(photo)}
+                              aria-label={`Open photo: ${photo.caption}`}
+                              className="block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-sidebar-border"
+                            >
+                              <img src={photo.src} alt={photo.alt} loading="lazy" className="h-auto w-full" />
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
                       {/* Bottom: supporting photos */}
                       <ul
                         className={`mt-10 grid grid-cols-2 gap-3 ${gallery.length === 0 ? "hidden" : ""} ${gallery.length === 5 ? "md:grid-cols-3 lg:grid-cols-5" : "md:grid-cols-4"}`}

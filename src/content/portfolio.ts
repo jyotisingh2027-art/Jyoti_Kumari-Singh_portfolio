@@ -220,7 +220,8 @@ export const certifications: {
 ];
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";
-import wannagoScreens from "@/assets/wannago/screens.webp";
+import wannagoFlow from "@/assets/wannago/flow-full.webp";
+import wannagoIdea from "@/assets/wannago/idea.webp";
 import hrCover from "@/assets/hrtech/cover.webp";
 import hrEvolution from "@/assets/hrtech/evolution.webp";
 import hrIntelligence from "@/assets/hrtech/record-to-intelligence.webp";
@@ -414,8 +415,11 @@ export const projectGroups = [
         tags: ["JTBD", "User Flows", "Wireframing", "Figma Make", "Social Discovery"],
         link: "https://hull-rival-94489917.figma.site",
         linkLabel: "Open the prototype",
+        fullPhotos: [
+          { src: wannagoIdea, alt: "WannaGo? product idea: tagline, assumption, alternative, ICP, problem and JTBD", caption: "Product idea" },
+        ] as ProjectPhoto[],
         awardPhoto: {
-          src: wannagoScreens,
+          src: wannagoFlow,
           alt: "WannaGo? user flow: home, find activity, find people, join the group, create activity, preview, activity live, do it together",
           caption: "WannaGo? user flow",
           hideCaption: true,

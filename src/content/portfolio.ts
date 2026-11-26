@@ -220,6 +220,7 @@ export const certifications: {
 ];
 
 import sectorMapAsset from "@/assets/sector-map.pdf?url";
+import wannagoScreens from "@/assets/wannago/screens.webp";
 import hrCover from "@/assets/hrtech/cover.webp";
 import hrEvolution from "@/assets/hrtech/evolution.webp";
 import hrIntelligence from "@/assets/hrtech/record-to-intelligence.webp";
@@ -400,6 +401,48 @@ export const projectGroups = [
         ],
         gallery: [
         ] as ProjectPhoto[],
+      },
+      {
+        index: "00d",
+        title: "WannaGo?",
+        category: "Product Concept · Social App",
+        year: "2026",
+        tagline:
+          "Whatever you wanna do, find someone to do it with: a social app built around doing things together, not following people.",
+        blurb: "WannaGo? — find people who want to do the same activity as you, right now.",
+        highlightTags: ["Product Design", "UX Flows", "Prototyping"],
+        tags: ["JTBD", "User Flows", "Wireframing", "Figma Make", "Social Discovery"],
+        link: "https://hull-rival-94489917.figma.site",
+        linkLabel: "Open the prototype",
+        awardPhoto: {
+          src: wannagoScreens,
+          alt: "WannaGo? user flow: home, find activity, find people, join the group, create activity, preview, activity live, do it together",
+          caption: "WannaGo? user flow",
+          hideCaption: true,
+        } as ProjectPhoto,
+        points: [
+          {
+            heading: "The insight",
+            items: [
+              "Social media assumes you want to **follow people and consume what they post**; WannaGo? bets that it can instead help you **find people who want to do the same thing as you, right now**.",
+              "Problem: \"I wish I had someone to do this with\". For people who want to join an activity but have no companion available at that moment.",
+            ],
+          },
+          {
+            heading: "The job to be done",
+            items: [
+              "When I want to do an activity but no one is free to join, I want to **find people doing the same activity at the same time**, so I can actually do it instead of doing it alone.",
+            ],
+          },
+          {
+            heading: "The flow",
+            items: [
+              "**Explore:** pick an activity nearby (a 3AM run, a movie, a trek, the gym), see who's going and how far they are, then join and coordinate the meeting point in a group chat.",
+              "**Create:** post an activity with type, time, place and group size, preview it and go live. The **group closes after the activity**, keeping it about the moment, not followers.",
+            ],
+          },
+        ],
+        gallery: [] as ProjectPhoto[],
       },
       {
         index: "01",

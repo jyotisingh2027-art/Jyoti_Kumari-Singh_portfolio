@@ -44,7 +44,8 @@ export const navLinks = [
   { label: "Journey", href: "#journey" },
   { label: "Skills", href: "#skills" },
   { label: "Certifications", href: "#certifications" },
-  { label: "My Work", href: "#projects" },
+  { label: "My Work", href: "#work" },
+  { label: "My Creation", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 

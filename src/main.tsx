@@ -11,6 +11,7 @@ import { About } from "@/components/site/About";
 import { Roadmap } from "@/components/site/Roadmap";
 import { Skills } from "@/components/site/Skills";
 import { Certifications } from "@/components/site/Certifications";
+import { CiscoWork } from "@/components/site/CiscoWork";
 import { Projects } from "@/components/site/Projects";
 import { Contact } from "@/components/site/Contact";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -26,6 +27,7 @@ function App() {
         <About />
         <Skills />
         <Certifications />
+        <CiscoWork />
         <Projects />
         <Roadmap />
         <Contact />

@@ -28,7 +28,7 @@ export function SiteNav() {
         {/* Spacer keeps the menu centred now that the name is no longer shown here */}
         <div className="md:flex-1" aria-hidden="true" />
 
-        <ul className="hidden items-center gap-9 text-sm font-semibold md:flex">
+        <ul className="hidden items-center gap-7 text-sm font-semibold md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a

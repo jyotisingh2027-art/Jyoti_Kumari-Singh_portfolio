@@ -12,8 +12,8 @@ export function Projects() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="eyebrow opacity-60">Selected work</p>
-            <h2 className="display mt-3 text-5xl sm:text-6xl">My Work</h2>
+            <p className="eyebrow opacity-60">Built during my MBA and engineering</p>
+            <h2 className="display mt-3 text-5xl sm:text-6xl">My Creation</h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed opacity-70">
             Work from my post-graduation programme and my undergraduate academic years.
